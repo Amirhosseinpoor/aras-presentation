@@ -1,3 +1,19 @@
+This is a complete overhaul of the presentation code. It addresses all your specific layout requests, introduces distinct styles for slides 4–7, incorporates image placeholders where requested, adds outcome links, and significantly improves the animations for a professional feel.
+
+### Key Changes Summary:
+
+1.  **Distinct Styles:** Slides 4, 5, 6, and 7 now have completely unique layouts and visual themes, moving away from the shared "process card" style you disliked.
+2.  **Image & Logo Placeholders:** Added specific areas for your profile picture (Slide 1), KNTU/ARAS logos (Slide 2 Top-Right), ARAS imagery (Slide 3 Right), and the Segmented Eye eye (Slide 4).
+3.  **Links:** Added "View Outcome" buttons to Slides 5 and 7.
+4.  **Enhanced Animations:** The slides now transition smoothly, and content elements *inside* the slides animate in sequentially (fade up) when the slide becomes active.
+
+### The Complete Code (`index.html`)
+
+Replace your previous `index.html` entirely with this code.
+
+**IMPORTANT:** You must replace the placeholder image paths (e.g., `src="path/to/your-profile.jpg"`) with your actual image files.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +26,15 @@
         /* --- 1. RESET & VARIABLES --- */
         :root {
             --primary: #2563EB;       /* Professional Blue */
+            --primary-dark: #1e3a8a;
             --secondary: #1E293B;     /* Dark Slate */
             --accent: #3B82F6;        /* Lighter Blue */
             --bg-color: #F8FAFC;      /* Very Light Gray/Blue */
             --text-main: #334155;     /* Dark Gray for text */
             --text-light: #64748B;    /* Lighter Gray */
             --white: #ffffff;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.4s ease-in-out;
+            --shadow: 0 12px 30px rgba(0,0,0,0.08);
+            --bg-dark: #0f172a;       /* For contrasting slides */
         }
 
         * {
@@ -28,9 +45,9 @@
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: var(--bg-color);
+            background-color: #e2e8f0; /* Slightly darker framing background */
             color: var(--text-main);
-            overflow: hidden; /* Prevent scrolling, act like an app */
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
             display: flex;
@@ -38,331 +55,317 @@
             align-items: center;
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: 'Montserrat', sans-serif;
             color: var(--secondary);
-            margin-bottom: 0.5em;
         }
 
-        /* --- 2. LAYOUT CONTAINER --- */
+        /* --- 2. LAYOUT CONTAINER & MAIN ANIMATIONS --- */
         .presentation-container {
             position: relative;
             width: 100%;
             height: 100%;
-            max-width: 1200px;
-            max-height: 800px;
-            background: var(--bg-color); 
-            /* On large screens, give it a card look, on mobile full screen */
+            max-width: 1400px; /* Wider for modern feel */
+            max-height: 900px;
+            background: var(--bg-color);
+            overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         @media (min-width: 1024px) {
             .presentation-container {
-                /* Optional: Contained view for very large screens */
-                height: 90vh;
-                background: var(--white);
-                border-radius: 20px;
-                box-shadow: var(--shadow);
-                overflow: hidden;
+                height: 95vh;
+                width: 95vw;
+                border-radius: 24px;
             }
         }
 
-        /* --- 3. SLIDES STRUCTURE --- */
+        /* --- SLIDES STRUCTURE & TRANSITIONS --- */
         .slide {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            padding: 3rem 4rem;
+            top: 0; left: 0; width: 100%; height: 100%;
+            padding: 4rem 6rem;
             opacity: 0;
             visibility: hidden;
-            transform: translateX(50px); /* Start slightly to right */
-            transition: var(--transition);
+            /* Exit animation state */
+            transform: scale(1.1) translateY(20px); 
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
         }
 
         .slide.active {
             opacity: 1;
             visibility: visible;
-            transform: translateX(0);
+            /* Entrance animation state */
+            transform: scale(1) translateY(0);
             z-index: 10;
         }
 
-        /* Slide Content Limits */
-        .content-wrapper {
-            max-width: 900px;
-            width: 100%;
+        /* Internal Content Animations (Staggered Fade Up) */
+        .animate-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
         }
 
-        /* --- 4. FORMATS & STYLES --- */
-
-        /* A. Standard / Title Slide */
-        .slide--title h1 {
-            font-size: 3.5rem;
-            color: var(--primary);
-            line-height: 1.2;
-        }
-        .slide--title h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 1rem;
-            color: var(--text-light);
-        }
-        .slide--title p {
-            margin-top: 2rem;
-            font-size: 1.1rem;
-            color: var(--text-main);
-        }
-        .contact-info {
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            border-top: 1px solid #e2e8f0;
-            padding-top: 1rem;
-            display: inline-block;
-        }
-
-        /* B. Bullet Layout */
-        .slide--bullet {
-            align-items: flex-start; /* Align left */
-            text-align: left;
-        }
-        .slide--bullet h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            border-left: 5px solid var(--primary);
-            padding-left: 1rem;
-        }
-        .slide--bullet ul {
-            list-style: none;
-            font-size: 1.5rem;
-        }
-        .slide--bullet li {
-            margin-bottom: 1.2rem;
-            padding-left: 2rem;
-            position: relative;
-        }
-        .slide--bullet li::before {
-            content: "•";
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 2rem;
-            position: absolute;
-            left: 0;
-            top: -0.2rem;
-        }
-
-        /* C. Hierarchical Layout (Process Cards) */
-        .slide--hierarchical {
-            background: linear-gradient(to bottom right, #ffffff, #f1f5f9);
-        }
-        .slide--hierarchical h2 {
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
-            color: var(--secondary);
-        }
-        .process-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border-left: 8px solid var(--accent);
-            text-align: left;
-        }
-        .process-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .step-badge {
-            background: var(--accent);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-right: 1rem;
-        }
-        .process-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--secondary);
-        }
-        .process-list li {
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            list-style-position: inside;
-            color: var(--text-main);
-        }
-
-        /* D. Pyramid Layout */
-        .slide--pyramid h2 {
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-        .pyramid-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 5px; /* Spacing between layers */
-        }
-        .pyramid-level {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        /* Top Level */
-        .lvl-1 {
-            width: 40%;
-            background-color: #1e3a8a; /* Darkest Blue */
-            z-index: 4;
-            font-size: 1.1rem;
-        }
-        /* Mid Levels */
-        .lvl-2 {
-            width: 60%;
-            background-color: #2563EB;
-            z-index: 3;
-            font-size: 1rem;
-        }
-        .lvl-3 {
-            width: 80%;
-            background-color: #60A5FA;
-            z-index: 2;
-            font-size: 1rem;
-            color: #1e293b;
-        }
-        /* Base Level */
-        .lvl-4 {
-            width: 100%;
-            background-color: #93C5FD; /* Lightest Blue */
-            z-index: 1;
-            font-size: 0.9rem;
-            color: #1e293b;
-        }
-        /* Add a subtle arrow indicator visual */
-        .pyramid-label {
-            margin-bottom: 10px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-light);
-        }
-
-        /* --- 5. CONTROLS --- */
-        .controls {
-            position: absolute;
-            bottom: 2rem;
-            right: 4rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            z-index: 100;
-        }
-
-        .btn-nav {
-            background: var(--white);
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .btn-nav:hover {
-            background: var(--secondary);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .btn-nav:active {
+        .slide.active .animate-up {
+            opacity: 1;
             transform: translateY(0);
         }
+        /* Stagger delays */
+        .slide.active .delay-1 { transition-delay: 0.2s; }
+        .slide.active .delay-2 { transition-delay: 0.4s; }
+        .slide.active .delay-3 { transition-delay: 0.6s; }
+        .slide.active .delay-4 { transition-delay: 0.8s; }
 
-        .slide-counter {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--text-light);
-            font-size: 1rem;
-        }
 
-        /* Progress Bar (Top) */
-        .progress-bar-container {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* --- UTILITIES & COMPONENTS --- */
+        .content-wrapper {
+            max-width: 1100px;
             width: 100%;
-            height: 5px;
-            background: #e2e8f0;
-            z-index: 100;
+            margin: 0 auto;
         }
-        .progress-bar {
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        /* Image Placeholders Styles */
+        .img-placeholder {
+            width: 100%;
             height: 100%;
+            min-height: 300px;
+            background: #cbd5e1; /* Grey placeholder color */
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: bold;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Buttons */
+        .btn-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
             background: var(--primary);
-            width: 0%; /* JS will update this */
-            transition: width 0.3s ease;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-link:hover { background: var(--primary-dark); }
+
+
+        /* --- INDIVIDUAL SLIDE STYLES --- */
+
+        /* SLIDE 1: Title w/ Profile Image */
+        .slide--title { text-align: center; align-items: center; }
+        .profile-img-container {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            margin: 0 auto 2rem auto;
+            overflow: hidden;
+        }
+        .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .slide--title h1 { font-size: 3rem; color: var(--primary); line-height: 1.1; margin-bottom: 1rem;}
+        .contact-info { margin-top: 3rem; font-size: 1rem; color: var(--text-light); }
+
+        /* SLIDE 2: Who I Am w/ Top Right Logos */
+        .slide--who-i-am { justify-content: flex-start; padding-top: 3rem; }
+        .header-with-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+            width: 100%;
+        }
+        .logo-container { display: flex; gap: 1.5rem; }
+        .logo-placeholder {
+            width: 70px; height: 70px; background: #e2e8f0;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; text-align: center; color: var(--text-light); font-weight: 700;
+        }
+        .logo-placeholder img { width: 100%; height: 100%; object-fit: contain;}
+        .bullet-list { list-style: none; }
+        .bullet-list li { font-size: 1.4rem; margin-bottom: 1.5rem; padding-left: 2rem; position: relative; }
+        .bullet-list li::before { content: "•"; color: var(--primary); font-size: 2rem; position: absolute; left: 0; top: -0.3rem; }
+
+        /* SLIDE 3: About ARAS (2-Column Left Text / Right Image) */
+        .slide--aras .grid-2 { align-items: center; }
+        .slide--aras .img-placeholder { height: 450px; }
+
+        /* SLIDE 4: Step 1 ROP (Distinct Style: Dark Mode Diagnostic) */
+        .slide--dark-split {
+            background-color: var(--bg-dark); /* Dark background for contrast */
+            color: var(--white);
+        }
+        .slide--dark-split h2 { color: var(--accent); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 10px;}
+        .slide--dark-split h3 { color: var(--white); margin-bottom: 1.5rem; }
+        .slide--dark-split li { color: #cbd5e1; } /* Lighter text for dark bg */
+        .slide--dark-split li::before { color: var(--accent); }
+        .diagnostic-img-frame {
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); /* Blue glow */
+            height: 400px;
         }
 
-        /* --- 6. RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .slide { padding: 1.5rem; }
-            .slide--title h1 { font-size: 2rem; }
-            .slide--bullet h2 { font-size: 1.8rem; }
-            .slide--bullet ul { font-size: 1.1rem; }
-            .controls { right: 50%; transform: translateX(50%); bottom: 1rem; }
-            .pyramid-level { font-size: 0.8rem; padding: 0.8rem; }
-            .lvl-1 { width: 60%; }
-            .lvl-2 { width: 75%; }
-            .lvl-3 { width: 90%; }
+        /* SLIDE 5: Step 2 Hackathon (Distinct Style: 3-Panel Blocks) */
+        .hackathon-panels {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: stretch;
+        }
+        .panel {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        .panel-header { font-weight: 800; color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;}
+        .panel ul { list-style: none; }
+        .panel li { margin-bottom: 0.8rem; font-size: 1rem; position: relative; padding-left: 1.5rem;}
+        .panel li::before { content: "→"; color: var(--accent); position: absolute; left: 0; }
+        .panel--outcome { background: var(--accent); color: white; }
+        .panel--outcome .panel-header, .panel--outcome li::before { color: white; }
+
+
+        /* SLIDE 6: Step 3 IR Deep Dive (Distinct Style: Process Timeline Flow) */
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4rem;
+            position: relative;
+        }
+        /* The connecting line */
+        .timeline-container::before {
+            content: ''; position: absolute; top: 30px; left: 50px; right: 50px;
+            height: 4px; background: #e2e8f0; z-index: 0;
+        }
+        .timeline-node {
+            background: white; padding: 2rem; border-radius: 12px;
+            box-shadow: var(--shadow); width: 30%; position: relative; z-index: 1;
+            border-top: 4px solid var(--primary);
+        }
+        .node-icon {
+            width: 60px; height: 60px; background: var(--primary); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;
+            position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+        }
+        .timeline-node h4 { text-align: center; margin-top: 1rem; margin-bottom: 1rem;}
+        .timeline-node ul { font-size: 0.95rem; padding-left: 1.2rem; }
+
+        /* SLIDE 7: Step 4 Capstone (Distinct Style: Architecture Diagram Layout) */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            background: white; padding: 3rem; border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .arch-block h3 { color: var(--primary); margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;}
+        .tech-stack-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+        }
+        .tech-item {
+            background: var(--bg-color); padding: 0.8rem; border-radius: 8px;
+            text-align: center; font-weight: 600; font-size: 0.9rem; color: var(--secondary);
+        }
+
+
+        /* SLIDE 8 & 9 (Bullet style re-used but clean) */
+        .slide--standard-list h2 { font-size: 2.5rem; margin-bottom: 2.5rem; color: var(--primary); }
+        
+        /* SLIDE 8 Specific - Pyramid modification */
+        .pyramid-container { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 2rem;}
+        .pyramid-level { width: 80%; padding: 1.2rem; text-align: center; color: white; font-weight: 600; border-radius: 8px; }
+        .lvl-1 { background: #1e3a8a; width: 40%; } /* Apex */
+        .lvl-2 { background: #2563EB; width: 60%; }
+        .lvl-3 { background: #3B82F6; width: 80%; }
+        .lvl-4 { background: #60A5FA; width: 100%; color: var(--secondary);} /* Base */
+
+
+        /* --- CONTROLS & PROGRESS --- */
+        .controls-container {
+            position: absolute; bottom: 2rem; right: 3rem;
+            display: flex; align-items: center; gap: 2rem; z-index: 100;
+        }
+        .nav-btn {
+            background: white; border: none; width: 50px; height: 50px; border-radius: 50%;
+            font-size: 1.5rem; color: var(--primary); box-shadow: var(--shadow);
+            cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
+        }
+        .nav-btn:hover { background: var(--primary); color: white; transform: scale(1.1); }
+        .slide-counter { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--text-light); }
+        
+        .progress-bar {
+            position: absolute; top: 0; left: 0; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%; transition: width 0.5s ease-in-out; z-index: 100;
+        }
+
+        /* RESPONSIVE TWEAKS */
+        @media (max-width: 1024px) {
+            .slide { padding: 3rem; }
+            .header-with-logos, .grid-2, .hackathon-panels, .timeline-container, .architecture-grid { flex-direction: column; grid-template-columns: 1fr; gap: 2rem; }
+            .timeline-container::before { display: none; }
+            .timeline-node, .panel { width: 100%; }
+            .logo-container { margin-top: 1rem; }
+             .img-placeholder { min-height: 250px; height: auto;}
         }
     </style>
 </head>
 <body>
 
 <div class="presentation-container">
-    
-    <div class="progress-bar-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
+    <div class="progress-bar" id="progressBar"></div>
 
     <div id="slides-wrapper">
 
         <div class="slide slide--title active" data-index="0">
-            <div class="content-wrapper">
-                <h1>My Journey at ARAS: From Medical AI to Agentic IR Systems</h1>
-                <h2>Amir Hosseinpoor</h2>
-                <p>AI Engineer — ARAS Robotics & AI Solutions</p>
-                <div class="contact-info">
-                    amirhosseinpoora6@gmail.com <br>
-                    amirhosseinpoor.github.io
+            <div class="content-wrapper animate-up">
+                <div class="profile-img-container">
+                   <img src="path/to/your-profile.jpg" alt="Amir Hosseinpoor">
+                </div>
+                <h1>My Journey at ARAS:<br>From Medical AI to Agentic IR Systems</h1>
+                <h2 class="delay-1 animate-up" style="margin-top: 1.5rem; font-size: 1.5rem; color: var(--text-light);">Amir Hosseinpoor</h2>
+                <p class="delay-2 animate-up" style="margin-top: 1rem; font-size: 1.2rem;">AI Engineer — ARAS Robotics & AI Solutions</p>
+                
+                <div class="contact-info delay-3 animate-up">
+                    amirhosseinpoora6@gmail.com | amirhosseinpoor.github.io
                 </div>
             </div>
         </div>
 
-        <div class="slide slide--bullet" data-index="1">
+        <div class="slide slide--who-i-am" data-index="1">
             <div class="content-wrapper">
-                <h2>Who I Am</h2>
-                <ul>
+                <div class="header-with-logos animate-up">
+                    <h2>Who I Am</h2>
+                    <div class="logo-container delay-1 animate-up">
+                        <div class="logo-placeholder"><img src="path/to/kntu-logo.png" alt="KNTU Logo"></div>
+                        <div class="logo-placeholder"><img src="path/to/aras-logo.png" alt="ARAS Logo"></div>
+                    </div>
+                </div>
+                <ul class="bullet-list delay-2 animate-up">
                     <li>B.Sc. Electrical Engineering — AI Track (KNTU)</li>
                     <li>AI Software Engineer at ARAS Robotics & AI Solutions</li>
                     <li>Focus areas: Information Retrieval, LLM Agents, Backend Engineering</li>
@@ -371,115 +374,155 @@
             </div>
         </div>
 
-        <div class="slide slide--bullet" data-index="2">
-            <div class="content-wrapper">
-                <h2>About ARAS</h2>
-                <ul>
-                    <li>ARAS develops robotic and AI-powered systems to assist surgeons</li>
-                    <li>Work involves surgical robotics, medical AI, and intelligent automation</li>
-                    <li>My role focuses on embedding IR + LLM agent pipelines into medical workflows</li>
-                    <li>Mission: enhance surgical performance with reliable AI assistance</li>
-                </ul>
+        <div class="slide slide--aras" data-index="2">
+             <div class="content-wrapper grid-2 animate-up">
+                <div class="left-text">
+                    <h2>About ARAS</h2>
+                    <ul class="bullet-list delay-1 animate-up" style="font-size: 1.2rem;">
+                        <li>ARAS develops robotic and AI-powered systems to assist surgeons</li>
+                        <li>Work involves surgical robotics, medical AI, and intelligent automation</li>
+                        <li>My role focuses on embedding IR + LLM agent pipelines into medical workflows</li>
+                        <li>Mission: enhance surgical performance with reliable AI assistance</li>
+                    </ul>
+                </div>
+                <div class="right-image delay-2 animate-up">
+                    <div class="img-placeholder">
+                        <img src="path/to/aras-robotics.jpg" alt="ARAS Robotics Lab">
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="slide slide--hierarchical" data-index="3">
-            <div class="content-wrapper">
-                <div class="process-card">
-                    <div class="process-header">
-                        <span class="step-badge">Step 1</span>
-                        <span class="process-title">Beginning with ROP Diagnostic Backend</span>
-                    </div>
-                    <ul class="process-list">
-                        <li>Built backend infrastructure for an AI model detecting Retinopathy of Prematurity</li>
+        <div class="slide slide--dark-split" data-index="3">
+             <div class="content-wrapper grid-2 animate-up">
+                <div class="left-text">
+                    <h2>Step 1: Beginning with ROP Diagnostic Backend</h2>
+                    <h3 class="delay-1 animate-up" style="margin-top: 2rem;">Building the Infrastructure</h3>
+                    <ul class="bullet-list delay-2 animate-up" style="font-size: 1.1rem;">
+                        <li>Built backend infrastructure for AI model detecting Retinopathy of Prematurity</li>
                         <li>Designed APIs around segmentation and classification pipelines</li>
                         <li>Integrated databases and handled data flow for medical usage</li>
                         <li>Learned how to productionize AI models for clinical environments</li>
                     </ul>
                 </div>
-            </div>
-        </div>
-
-        <div class="slide slide--hierarchical" data-index="4">
-            <div class="content-wrapper">
-                <div class="process-card">
-                    <div class="process-header">
-                        <span class="step-badge">Step 2</span>
-                        <span class="process-title">Sharif LLM Agents Hackathon</span>
+                <div class="right-image delay-3 animate-up">
+                    <div class="img-placeholder diagnostic-img-frame">
+                         <img src="path/to/segmented-eye.jpg" alt="Segmented Eye Analysis Output">
                     </div>
-                    <ul class="process-list">
-                        <li>Challenge: Build a full application using LLM agents</li>
-                        <li>Started from a prebuilt concept (similar to a surgical feedback system)</li>
-                        <li>Added multi-agent workflows for reasoning, retrieval, and structured reporting</li>
-                        <li>Ranked Top 10–12 among 132+ teams</li>
-                        <li>Learned agentic AI principles, tool use, and the need for reliable RAG</li>
-                    </ul>
                 </div>
             </div>
         </div>
 
-        <div class="slide slide--hierarchical" data-index="5">
-            <div class="content-wrapper">
-                <div class="process-card">
-                    <div class="process-header">
-                        <span class="step-badge">Step 3</span>
-                        <span class="process-title">Deep Dive into Information Retrieval</span>
+        <div class="slide slide--hackathon" data-index="4">
+            <div class="content-wrapper animate-up">
+                <h2>Step 2: Sharif LLM Agents Hackathon</h2>
+                <div class="hackathon-panels delay-1 animate-up">
+                    <div class="panel">
+                        <div class="panel-header">The Challenge</div>
+                        <ul>
+                            <li>Build a full application using LLM agents</li>
+                            <li>Started from a prebuilt surgical concept</li>
+                        </ul>
                     </div>
-                    <ul class="process-list">
-                        <li>Studied classical IR: TF-IDF, BM25, inverted indexes</li>
-                        <li>Moved to dense retrieval: bi-encoders, ColBERT</li>
-                        <li>Explored hybrid methods: SPLADE, BM25 + SPLADE + dense + rerankers</li>
-                        <li>Learned IR evaluation metrics: MAP, nDCG, recall</li>
-                        <li>Goal: build trustworthy retrieval pipelines for LLM agents</li>
-                    </ul>
+                    <div class="panel">
+                         <div class="panel-header">My Contribution</div>
+                         <ul>
+                             <li>Added multi-agent workflows for reasoning & retrieval</li>
+                             <li>Implemented structured reporting</li>
+                         </ul>
+                    </div>
+                     <div class="panel panel--outcome">
+                         <div class="panel-header">Outcome & Learnings</div>
+                         <ul>
+                             <li>Ranked Top 10–12 among 132+ teams</li>
+                             <li>Learned agentic AI principles & necessity of reliable RAG</li>
+                         </ul>
+                         <a href="YOUR_HACKATHON_LINK_HERE" target="_blank" class="btn-link animate-up delay-2">View Our Outcome</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="slide slide--hierarchical" data-index="6">
-            <div class="content-wrapper">
-                <div class="process-card">
-                    <div class="process-header">
-                        <span class="step-badge">Step 4</span>
-                        <span class="process-title">Occupational Health Platform (Capstone)</span>
+        <div class="slide slide--timeline" data-index="5">
+            <div class="content-wrapper animate-up">
+                <h2>Step 3: Deep Dive into Information Retrieval</h2>
+                <p class="delay-1 animate-up" style="font-size: 1.2rem; margin-bottom: 2rem;">Goal: Building trustworthy retrieval pipelines for LLM agents</p>
+                
+                <div class="timeline-container delay-2 animate-up">
+                    <div class="timeline-node">
+                        <div class="node-icon">1</div>
+                        <h4>Classical IR</h4>
+                         <ul>
+                            <li>TF-IDF</li>
+                            <li>BM25</li>
+                            <li>Inverted Indexes</li>
+                        </ul>
                     </div>
-                    <ul class="process-list">
-                        <li>Built an end-to-end AI assistant for occupational medicine</li>
-                        <li>Extracts data from forms and lab PDFs using OCR + vision-language models</li>
-                        <li>Performs disease-risk estimation with ML models</li>
-                        <li>Designed a hybrid IR engine: BM25, SPLADE, dense retrieval, Cross-Encoder reranking</li>
-                        <li>Created multi-agent workflows for generating clinician-ready reports</li>
-                        <li>Engineered full backend using Django, FastAPI, Celery, PostgreSQL, Docker</li>
-                    </ul>
+                    <div class="timeline-node delay-1 animate-up">
+                         <div class="node-icon">2</div>
+                        <h4>Dense Retrieval</h4>
+                         <ul>
+                            <li>Bi-encoders</li>
+                            <li>ColBERT embeddings</li>
+                        </ul>
+                    </div>
+                     <div class="timeline-node delay-2 animate-up">
+                         <div class="node-icon">3</div>
+                        <h4>Hybrid & Metrics</h4>
+                         <ul>
+                            <li>SPLADE + Rerankers</li>
+                            <li>Eval: MAP, nDCG, Recall</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="slide slide--pyramid" data-index="7">
-            <div class="content-wrapper">
+        <div class="slide slide--architecture" data-index="6">
+            <div class="content-wrapper animate-up">
+                <h2>Step 4: Occupational Health Platform (Capstone)</h2>
+                <div class="architecture-grid delay-1 animate-up">
+                    <div class="arch-block main-features">
+                        <h3>System Capabilities</h3>
+                         <ul class="bullet-list" style="font-size: 1rem;">
+                            <li>Extracts data from forms/PDFs (OCR + Vision-LLMs)</li>
+                            <li>Performs disease-risk estimation via ML models</li>
+                            <li>Hybrid IR Engine: BM25, SPLADE, Cross-Encoder reranking</li>
+                            <li>Multi-agent workflows for clinician-ready reports</li>
+                        </ul>
+                    </div>
+                    <div class="arch-block tech-stack">
+                        <h3>Backend Engineering Stack</h3>
+                        <div class="tech-stack-grid">
+                            <div class="tech-item">Django & FastAPI</div>
+                            <div class="tech-item">Celery (Async)</div>
+                            <div class="tech-item">PostgreSQL</div>
+                            <div class="tech-item">Dockerized</div>
+                        </div>
+                         <div style="text-align: center;">
+                             <button onclick="alert('Replace this alert with actual link')" class="btn-link animate-up delay-2">View Project Outcome</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide slide--standard-list" data-index="7">
+            <div class="content-wrapper animate-up">
                 <h2>What I Can Do Today</h2>
-                <div class="pyramid-label">From Foundation to Production</div>
-                <div class="pyramid-container">
-                    <div class="pyramid-level lvl-1">
-                        Strength: Converting prototypes into reliable systems
-                    </div>
-                    <div class="pyramid-level lvl-2">
-                        LLM Engineering: Agent pipelines, Tool-use, Retrieval Grounding
-                    </div>
-                    <div class="pyramid-level lvl-3">
-                        IR & RAG: BM25, Dense Retrieval, SPLADE, Hybrid Search
-                    </div>
-                    <div class="pyramid-level lvl-4">
-                        Backend: Django, FastAPI, Celery, Docker, PostgreSQL
-                    </div>
+                <div class="pyramid-container delay-1 animate-up">
+                    <div class="pyramid-level lvl-1">Strength: Converting prototypes into reliable production systems</div>
+                    <div class="pyramid-level lvl-2">LLM Engineering: Agent pipelines, Tool-use, Retrieval Grounding</div>
+                    <div class="pyramid-level lvl-3">IR & RAG: BM25, Dense Retrieval, SPLADE, Hybrid Search</div>
+                    <div class="pyramid-level lvl-4">Backend: Django, FastAPI, Celery, Docker, PostgreSQL</div>
                 </div>
             </div>
         </div>
 
-        <div class="slide slide--bullet" data-index="8">
-            <div class="content-wrapper">
+        <div class="slide slide--standard-list" data-index="8">
+            <div class="content-wrapper animate-up">
                 <h2>Where I Want to Grow</h2>
-                <ul>
+                <ul class="bullet-list delay-1 animate-up">
                     <li>More advanced RAG architectures with principled evaluation</li>
                     <li>Scalable multi-agent systems for clinical and robotic environments</li>
                     <li>Integrating robotics + AI + IR for surgical decision support</li>
@@ -489,21 +532,19 @@
         </div>
 
         <div class="slide slide--title" data-index="9">
-            <div class="content-wrapper">
+            <div class="content-wrapper animate-up">
                 <h1>Thank You</h1>
-                <p>I’m happy to discuss any part of this journey.</p>
-                <div class="contact-info">
+                <p class="delay-1 animate-up" style="font-size: 1.5rem; margin: 2rem 0;">I’m happy to discuss any part of this journey.</p>
+                <div class="contact-info delay-2 animate-up" style="font-size: 1.2rem; color: var(--primary);">
                     <strong>Contact:</strong> amirhosseinpoora6@gmail.com
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <div class="controls">
-        <div class="slide-counter" id="slideCounter">Slide 1 / 10</div>
-        <button class="btn-nav" id="btnPrev" aria-label="Previous Slide">←</button>
-        <button class="btn-nav" id="btnNext" aria-label="Next Slide">→</button>
+    </div> <div class="controls-container">
+        <div class="slide-counter" id="slideCounter">1 / 10</div>
+        <button class="nav-btn" id="btnPrev" aria-label="Previous">←</button>
+        <button class="nav-btn" id="btnNext" aria-label="Next">→</button>
     </div>
 
 </div>
@@ -520,55 +561,35 @@
         const progressBar = document.getElementById('progressBar');
 
         function updateSlide(index) {
-            // Remove active class from all
             slides.forEach(slide => slide.classList.remove('active'));
-            
-            // Add active class to current
             slides[index].classList.add('active');
-            
-            // Update Counter
-            counter.textContent = `Slide ${index + 1} / ${totalSlides}`;
-            
-            // Update Progress Bar
-            const progress = ((index + 1) / totalSlides) * 100;
-            progressBar.style.width = `${progress}%`;
+            counter.textContent = `${index + 1} / ${totalSlides}`;
+            progressBar.style.width = `${((index + 1) / totalSlides) * 100}%`;
         }
 
         function nextSlide() {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-            } else {
-                currentSlide = 0; // Loop back to start
-            }
+            currentSlide = (currentSlide + 1) % totalSlides;
             updateSlide(currentSlide);
         }
 
         function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-            } else {
-                currentSlide = totalSlides - 1; // Loop to end
-            }
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
             updateSlide(currentSlide);
         }
 
-        // Button Listeners
         btnNext.addEventListener('click', nextSlide);
         btnPrev.addEventListener('click', prevSlide);
 
-        // Keyboard Navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
         });
 
-        // Initialize
+        // Initial Load
         updateSlide(currentSlide);
     });
 </script>
 
 </body>
 </html>
+```
