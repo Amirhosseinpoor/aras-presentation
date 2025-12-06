@@ -257,9 +257,9 @@
         .timeline-node h4 { text-align: center; margin-top: 1rem; margin-bottom: 1rem;}
         .timeline-node ul { font-size: 0.95rem; padding-left: 1.2rem; }
 
-        /* >>> NEW: Slide 6 special color theme (teal) <<< */
+        /* Slide 6 special color theme (teal) */
         .slide--timeline {
-            background: #0f766e; /* Teal contrast instead of dark blue */
+            background: #0f766e; /* Teal contrast */
             color: var(--white);
         }
         .slide--timeline h2 {
@@ -315,6 +315,18 @@
         .lvl-3 { background: #3B82F6; width: 80%; }
         .lvl-4 { background: #60A5FA; width: 100%; color: var(--secondary);} /* Base */
 
+
+        /* --- NEW: Closing slide special color (page 9) --- */
+        .slide--closing {
+            background: #1d283a; /* deep slate/indigo to fit palette */
+            color: var(--white);
+        }
+        .slide--closing h1 {
+            color: #e0f2fe;
+        }
+        .slide--closing .contact-info {
+            color: #e5e7eb !important;
+        }
 
         /* --- CONTROLS & PROGRESS --- */
         .controls-container {
@@ -449,6 +461,7 @@
                              <li>Ranked Top 10–12 among 132+ teams</li>
                              <li>Learned agentic AI principles & necessity of reliable RAG</li>
                          </ul>
+                         <!-- Outcome link - page 5 -->
                          <a href="YOUR_HACKATHON_LINK_HERE" target="_blank" class="btn-link animate-up delay-2">View Our Outcome</a>
                     </div>
                 </div>
@@ -512,7 +525,7 @@
                             <div class="tech-item">Dockerized</div>
                         </div>
                          <div style="text-align: center;">
-                             <!-- UPDATED: real link button, same style as slide 5 -->
+                             <!-- Outcome link - page 7 / capstone -->
                              <a href="YOUR_PROJECT_OUTCOME_LINK_HERE" target="_blank" class="btn-link animate-up delay-2">View Project Outcome</a>
                          </div>
                     </div>
@@ -529,6 +542,10 @@
                     <div class="pyramid-level lvl-3">IR & RAG: BM25, Dense Retrieval, SPLADE, Hybrid Search</div>
                     <div class="pyramid-level lvl-4">Backend: Django, FastAPI, Celery, Docker, PostgreSQL</div>
                 </div>
+                <!-- Outcome link again on this page, same style -->
+                <div class="delay-2 animate-up" style="text-align:center; margin-top:2rem;">
+                    <a href="YOUR_PROJECT_OUTCOME_LINK_HERE" target="_blank" class="btn-link">View Project Outcome</a>
+                </div>
             </div>
         </div>
 
@@ -544,11 +561,11 @@
             </div>
         </div>
 
-        <div class="slide slide--title" data-index="9">
+        <div class="slide slide--title slide--closing" data-index="9">
             <div class="content-wrapper animate-up">
                 <h1>Thank You</h1>
                 <p class="delay-1 animate-up" style="font-size: 1.5rem; margin: 2rem 0;">I’m happy to discuss any part of this journey.</p>
-                <div class="contact-info delay-2 animate-up" style="font-size: 1.2rem; color: var(--primary);">
+                <div class="contact-info delay-2 animate-up" style="font-size: 1.2rem;">
                     <strong>Contact:</strong> amirhosseinpoora6@gmail.com
                 </div>
             </div>
