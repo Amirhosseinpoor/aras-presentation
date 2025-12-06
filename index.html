@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Journey at ARAS - Interactive Presentation</title>
+  <title>My Journey at ARAS - Presentation</title>
 
   <style>
     /* =========================
-       Global Tokens
+       Global Design Tokens
        ========================= */
     :root {
-      --bg-page: #0f172a;
-      --slide-bg: #0b1220;
-      --accent: #38bdf8;
-      --accent-2: #a855f7;
-      --accent-soft: rgba(56, 189, 248, 0.16);
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.5);
+      --page-bg: #eef2ff;
+      --frame-bg: #ffffff;
+      --slide-bg: #f9fafb;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --accent-2: #7c3aed;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
       --radius-xl: 26px;
-      --shadow-slide: 0 40px 80px rgba(15, 23, 42, 0.9);
-      --transition-fast: 0.4s ease-out;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.15);
+      --transition-fast: 0.35s ease-out;
     }
 
     * {
@@ -37,7 +38,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
       background:
-        radial-gradient(circle at top left, #1d283a 0, #020617 45%, #020617 100%);
+        radial-gradient(circle at top left, #dbeafe 0, #eef2ff 35%, #e5e7eb 100%);
       color: var(--text-main);
       display: flex;
       align-items: center;
@@ -53,24 +54,26 @@
       position: relative;
       width: min(1120px, 100%);
       aspect-ratio: 16 / 9;
-      background: radial-gradient(circle at top, #1e293b 0, #020617 65%);
+      background: radial-gradient(circle at top, #ffffff 0, #f3f4f6 60%);
       border-radius: 30px;
-      box-shadow: var(--shadow-slide);
-      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      padding: 18px 22px 16px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.3);
+      border: 1px solid rgba(148, 163, 184, 0.4);
     }
 
-    /* Top bar (like PowerPoint bar) */
+    /* =========================
+       Top Bar (like PowerPoint)
+       ========================= */
     .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(51, 65, 85, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
       font-size: 0.8rem;
       color: var(--text-muted);
     }
@@ -82,55 +85,54 @@
     }
 
     .brand-logo {
-      position: relative;
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 10px;
       background:
-        conic-gradient(from 200deg, #38bdf8, #a855f7, #22c55e, #38bdf8);
+        conic-gradient(from 200deg, #2563eb, #7c3aed, #22c55e, #2563eb);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.6);
     }
 
     .brand-logo-inner {
-      width: 18px;
-      height: 18px;
-      border-radius: 8px;
-      background: #020617;
-      border: 1px solid rgba(15, 23, 42, 0.7);
+      width: 20px;
+      height: 20px;
+      border-radius: 9px;
+      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      color: #e5e7eb;
+      color: var(--accent);
     }
 
     .top-meta {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 2px;
     }
 
     .top-meta-title {
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: #e5e7eb;
+      color: #111827;
     }
 
     .top-meta-sub {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
 
     .slide-indicator {
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: #f9fafb;
+      border: 1px solid #d1d5db;
       font-size: 0.78rem;
       display: flex;
       align-items: center;
@@ -142,7 +144,7 @@
       height: 8px;
       border-radius: 999px;
       background: var(--accent);
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.8);
     }
 
     /* =========================
@@ -154,8 +156,8 @@
       margin: 10px 0;
       overflow: hidden;
       border-radius: 22px;
-      background: radial-gradient(circle at top left, #0b1220 0, #020617 65%);
-      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: var(--slide-bg);
+      border: 1px solid var(--border-subtle);
     }
 
     .slides-inner {
@@ -167,14 +169,15 @@
     .slide {
       position: absolute;
       inset: 0;
-      padding: 26px 30px;
+      padding: 24px 28px;
       display: flex;
       opacity: 0;
       pointer-events: none;
-      transform: translateX(50px) scale(0.98);
+      transform: translateX(40px) scale(0.98);
       transition:
         opacity var(--transition-fast),
         transform var(--transition-fast);
+      background: radial-gradient(circle at top left, #ffffff 0, #f9fafb 70%);
     }
 
     .slide.active {
@@ -183,7 +186,7 @@
       pointer-events: auto;
     }
 
-    /* Slide content base */
+    /* Slide body base grid */
     .slide-body {
       width: 100%;
       height: 100%;
@@ -199,6 +202,13 @@
       gap: 14px;
     }
 
+    .slide-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+    }
+
     .slide-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -206,25 +216,18 @@
       display: inline-flex;
       align-items: baseline;
       gap: 12px;
-    }
-
-    .slide-kicker {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--accent);
-      margin-bottom: 4px;
+      color: #111827;
     }
 
     .slide-tag {
       padding: 3px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      border: 1px solid #e5e7eb;
       font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       color: var(--text-muted);
-      background: rgba(15, 23, 42, 0.9);
+      background: #f9fafb;
     }
 
     .slide-subtitle {
@@ -261,51 +264,43 @@
     .contact-info a {
       color: var(--accent);
       text-decoration: none;
-      border-bottom: 1px dashed rgba(56, 189, 248, 0.7);
+      border-bottom: 1px dashed rgba(37, 99, 235, 0.6);
     }
 
     .contact-info a:hover {
       border-bottom-style: solid;
     }
 
-    /* Right column (media / visual) */
+    /* Right column: media / visuals */
     .slide-media {
       position: relative;
       border-radius: 18px;
       padding: 14px;
-      border: 1px solid rgba(51, 65, 85, 0.9);
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.95));
-      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
-      overflow: hidden;
+      border: 1px dashed #d4d4d8;
+      background: #f9fafb;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .slide-media-title {
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: #e5e7eb;
-      opacity: 0.8;
-    }
-
-    .slide-media-note {
-      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
     .media-placeholder,
     .media-img {
       border-radius: 14px;
-      border: 1px dashed rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.85);
+      border: 1px dashed #e5e7eb;
+      background: #ffffff;
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       text-align: center;
       padding: 10px;
@@ -323,50 +318,220 @@
       font-size: 0.7rem;
       padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.8);
-      color: #bae6fd;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      color: #4b5563;
       align-self: flex-start;
-      background: rgba(15, 23, 42, 0.9);
+      background: #f3f4f6;
     }
 
     /* =========================
-       Per-slide Themes
+       SPECIAL LAYOUTS PER SLIDE
        ========================= */
-    .slide.theme-title {
-      background: radial-gradient(circle at top left, #0f172a 0, #020617 60%);
+
+    /* Slide 1: Title (big hero, minimal bullets) */
+    .slide.theme-title .slide-body {
+      grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.6fr);
     }
 
     .slide.theme-title .slide-title {
       font-size: 1.9rem;
     }
 
-    .slide.theme-title .slide-body {
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+    /* Slide 3: Two-column list */
+    .columns-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 24px;
+      margin-top: 8px;
+      font-size: 0.95rem;
     }
 
-    .slide.theme-title .slide-subtitle {
-      font-size: 1.02rem;
+    /* Slide 4: Process cards instead of bullets */
+    .process {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 6px;
     }
 
-    .slide.theme-softblue .slide-media {
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.96));
+    .process-card {
+      background: #f3f4ff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      line-height: 1.6;
     }
 
-    .slide.theme-purple .slide-media {
-      background: radial-gradient(circle at top, rgba(168, 85, 247, 0.22), rgba(15, 23, 42, 0.96));
+    .process-card strong {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 3px;
     }
 
-    .slide.theme-green .slide-media {
-      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.22), rgba(15, 23, 42, 0.96));
+    /* Slide 5: Timeline style */
+    .timeline {
+      margin-top: 10px;
+      border-left: 2px solid #d4d4d8;
+      padding-left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.95rem;
     }
 
-    .slide.theme-split .slide-body {
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.9fr);
+    .timeline-item {
+      position: relative;
+      padding-left: 4px;
     }
 
-    /* Slide 10 compact layout */
-    .slide.theme-end .slide-body {
-      grid-template-columns: minmax(0, 1.8fr) minmax(0, 2.2fr);
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -18px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 2px solid var(--accent);
+    }
+
+    /* Slide 6: Pyramid layout */
+    .pyramid-wrapper {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .pyramid-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .pyramid {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .pyramid-level {
+      height: 40px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      background: #e0e7ff;
+      border: 1px solid #c7d2fe;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .pyramid-level.level-1 { width: 100%; }
+    .pyramid-level.level-2 { width: 82%; }
+    .pyramid-level.level-3 { width: 64%; }
+    .pyramid-level.level-4 { width: 50%; }
+
+    /* Slide 7: Workflow lanes */
+    .workflow {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .workflow-lane {
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #eff6ff;
+      padding: 10px 12px;
+    }
+
+    .workflow-lane strong {
+      font-size: 0.82rem;
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #1d4ed8;
+    }
+
+    .workflow-list {
+      list-style: none;
+      margin-top: 4px;
+    }
+
+    .workflow-list li {
+      margin-bottom: 4px;
+    }
+
+    /* Slide 8: Skill columns */
+    .skills-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .skill-card {
+      background: #f3f4ff;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      padding: 10px 12px;
+    }
+
+    .skill-card strong {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      color: var(--accent);
+    }
+
+    /* Slide 9: Hierarchical tree */
+    .tree {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .tree-root {
+      align-self: flex-start;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #eef2ff;
+      border: 1px solid #e5e7eb;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .tree-children {
+      position: relative;
+      margin-left: 18px;
+      padding-left: 18px;
+      border-left: 2px solid #e5e7eb;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .tree-child {
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      line-height: 1.5;
     }
 
     /* =========================
@@ -397,7 +562,7 @@
     @keyframes fadeScale {
       from {
         opacity: 0;
-        transform: scale(0.94);
+        transform: scale(0.96);
       }
       to {
         opacity: 1;
@@ -406,19 +571,19 @@
     }
 
     .slide.active .animate-title {
-      animation: fadeUp 0.55s ease-out both;
+      animation: fadeUp 0.5s ease-out both;
     }
 
     .slide.active .animate-subtitle {
-      animation: fadeUp 0.6s ease-out both 0.08s;
+      animation: fadeUp 0.55s ease-out both 0.06s;
     }
 
-    .slide.active .animate-list {
-      animation: fadeRight 0.55s ease-out both 0.14s;
+    .slide.active .animate-body {
+      animation: fadeRight 0.55s ease-out both 0.12s;
     }
 
     .slide.active .animate-media {
-      animation: fadeScale 0.55s ease-out both 0.12s;
+      animation: fadeScale 0.5s ease-out both 0.14s;
     }
 
     /* =========================
@@ -430,12 +595,12 @@
       justify-content: space-between;
       gap: 10px;
       padding-top: 8px;
-      border-top: 1px solid rgba(51, 65, 85, 0.9);
+      border-top: 1px solid var(--border-subtle);
       font-size: 0.78rem;
       color: var(--text-muted);
     }
 
-    .progress-bar-wrapper {
+    .progress-wrapper {
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -447,7 +612,7 @@
       width: 100%;
       height: 4px;
       border-radius: 999px;
-      background: rgba(30, 64, 175, 0.7);
+      background: #e5e7eb;
       overflow: hidden;
     }
 
@@ -455,8 +620,8 @@
       position: absolute;
       inset: 0;
       width: 0%;
-      background: linear-gradient(90deg, #38bdf8, #a855f7, #22c55e);
-      transition: width 0.4s ease-out;
+      background: linear-gradient(90deg, #2563eb, #7c3aed, #22c55e);
+      transition: width 0.35s ease-out;
     }
 
     .dot-list {
@@ -470,20 +635,21 @@
       height: 10px;
       border-radius: 999px;
       border: none;
-      background: rgba(148, 163, 184, 0.6);
+      background: #d4d4d8;
       cursor: pointer;
       padding: 0;
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     .dot-btn.active {
-      background: #38bdf8;
+      background: var(--accent);
       transform: scale(1.3);
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.8);
     }
 
     .dot-btn:hover {
-      background: rgba(56, 189, 248, 0.8);
+      background: #60a5fa;
     }
 
     .controls {
@@ -495,15 +661,15 @@
     .nav-btn {
       border-radius: 999px;
       padding: 7px 16px;
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid #cbd5f5;
+      background: #ffffff;
       font-size: 0.78rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-weight: 500;
-      color: #e5e7eb;
+      color: #1f2937;
       transition:
         background 0.2s ease,
         transform 0.15s ease,
@@ -512,9 +678,10 @@
     }
 
     .nav-btn.primary {
-      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
       border-color: transparent;
-      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.7);
+      color: #ffffff;
+      box-shadow: 0 12px 26px rgba(37, 99, 235, 0.4);
     }
 
     .nav-btn span.icon {
@@ -523,24 +690,23 @@
 
     .nav-btn:hover:not(:disabled) {
       transform: translateY(-1px);
-      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.9);
-      background: linear-gradient(135deg, #38bdf8, #1d4ed8);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.18);
     }
 
     .nav-btn.secondary:hover:not(:disabled) {
-      background: rgba(15, 23, 42, 0.85);
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.7);
+      background: #f9fafb;
     }
 
     .nav-btn:disabled {
       cursor: default;
-      opacity: 0.45;
+      opacity: 0.4;
       box-shadow: none;
       transform: none;
     }
 
     .keyboard-hint {
       font-size: 0.75rem;
+      white-space: nowrap;
     }
 
     /* =========================
@@ -557,12 +723,12 @@
       }
 
       .slide-body {
-        grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1.6fr);
         gap: 16px;
       }
 
       .slide-title {
-        font-size: 1.35rem;
+        font-size: 1.4rem;
       }
     }
 
@@ -589,7 +755,7 @@
 
       .slide-body {
         grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: auto minmax(0, 180px);
+        grid-template-rows: auto minmax(0, 160px);
       }
 
       .slide-media {
@@ -605,13 +771,12 @@
         display: none;
       }
     }
-
   </style>
 </head>
 <body>
-  <div class="frame" aria-label="Presentation">
+  <div class="frame" aria-label="Slide presentation">
 
-    <!-- Top Bar -->
+    <!-- Top bar -->
     <header class="top-bar">
       <div class="top-left">
         <div class="brand-logo">
@@ -632,20 +797,23 @@
     <main class="slides-area">
       <div class="slides-inner">
 
-        <!-- Slide 1 — Title -->
+        <!-- Slide 1 — Title (hero) -->
         <section class="slide theme-title active" data-slide="1" aria-label="Slide 1: Title">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 1 — Title</div>
               <h1 class="slide-title animate-title">
                 My Journey at ARAS:
-                <span style="color: var(--accent);">From Medical AI to Agentic IR Systems</span>
+                <span style="color: var(--accent);">
+                  From Medical AI to Agentic IR Systems
+                </span>
               </h1>
               <p class="slide-subtitle animate-subtitle">
-                A short story about how I moved from building clinical AI systems
-                to designing agentic IR pipelines that power reliable LLM assistants.
+                How I moved from building clinical AI backends to designing agentic IR pipelines
+                that support reliable medical decision-making.
               </p>
-              <div class="animate-list">
+
+              <div class="animate-body" style="margin-top:8px;">
                 <p><strong>Amir Hosseinpoor</strong></p>
                 <p>AI Engineer — ARAS Robotics &amp; AI Solutions</p>
                 <div class="contact-info" style="margin-top:8px;">
@@ -666,9 +834,9 @@
             <aside class="slide-media animate-media">
               <div class="slide-media-title">Optional Visual</div>
               <div class="media-placeholder">
-                Place a hero image here (e.g., clinic + code, ARAS logo, or a simple abstract tech illustration).  
-                Replace this with:
-                <br><br>
+                Add a main hero image here (ARAS, operating room, or an abstract tech illustration).
+                <br /><br />
+                Example:
                 <code>&lt;img src="images/slide1.png" alt="ARAS &amp; AI" /&gt;</code>
               </div>
               <span class="media-chip">Title slide</span>
@@ -676,8 +844,8 @@
           </div>
         </section>
 
-        <!-- Slide 2 — Who I Am -->
-        <section class="slide theme-softblue" data-slide="2" aria-label="Slide 2: Who I Am">
+        <!-- Slide 2 — Who I Am (classic bullets) -->
+        <section class="slide" data-slide="2" aria-label="Slide 2: Who I Am">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 2</div>
@@ -686,10 +854,10 @@
                 <span class="slide-tag">Profile</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                Technical background + what I enjoy working on every day.
+                A quick snapshot of my background and what I like to build.
               </div>
 
-              <ul class="bullet-list animate-list">
+              <ul class="bullet-list animate-body">
                 <li>
                   <span class="bullet-dot">•</span>
                   <span class="bullet-text">
@@ -718,11 +886,10 @@
             </div>
 
             <aside class="slide-media animate-media">
-              <div class="slide-media-title">Timeline / Portrait</div>
+              <div class="slide-media-title">Portrait / Timeline</div>
               <div class="media-placeholder">
-                You can put a simple timeline graphic or a photo here.  
-                Example:
-                <br><br>
+                Put a personal photo or short education/work timeline here.
+                <br /><br />
                 <code>&lt;img src="images/profile.jpg" alt="Amir portrait" /&gt;</code>
               </div>
               <span class="media-chip">Background</span>
@@ -730,8 +897,8 @@
           </div>
         </section>
 
-        <!-- Slide 3 — About ARAS -->
-        <section class="slide theme-purple theme-split" data-slide="3" aria-label="Slide 3: About ARAS">
+        <!-- Slide 3 — About ARAS (2-column layout) -->
+        <section class="slide" data-slide="3" aria-label="Slide 3: About ARAS">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 3</div>
@@ -740,51 +907,41 @@
                 <span class="slide-tag">Company</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                Where I work, and how robotics and AI come together in the OR.
+                Where robotics, medical AI, and automation meet in the operating room.
               </div>
 
-              <ul class="bullet-list animate-list">
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    ARAS develops robotic and AI-powered systems to assist surgeons
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Work involves surgical robotics, medical AI, and intelligent automation
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    My role focuses on embedding IR + LLM agent pipelines into medical workflows
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Mission: enhance surgical performance with reliable AI assistance
-                  </span>
-                </li>
-              </ul>
+              <div class="columns-2 animate-body">
+                <div>
+                  <p>• ARAS develops robotic and AI-powered systems to assist surgeons</p>
+                  <p style="margin-top:6px;">
+                    • Work involves surgical robotics, medical AI, and intelligent automation
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    • My role focuses on embedding IR + LLM agent pipelines into medical workflows
+                  </p>
+                  <p style="margin-top:6px;">
+                    • Mission: enhance surgical performance with reliable AI assistance
+                  </p>
+                </div>
+              </div>
             </div>
 
             <aside class="slide-media animate-media">
               <div class="slide-media-title">Surgical Context</div>
               <div class="media-placeholder">
-                Option: image of an operating room, surgical robot, or system architecture diagram.
-                <br><br>
-                <code>&lt;img src="images/aros-robotics.png" alt="ARAS surgical robotics" /&gt;</code>
+                Image idea: operating room, robot arm, or high-level system diagram.
+                <br /><br />
+                <code>&lt;img src="images/aras-robotics.png" alt="ARAS robotics" /&gt;</code>
               </div>
               <span class="media-chip">ARAS Robotics</span>
             </aside>
           </div>
         </section>
 
-        <!-- Slide 4 — Step 1: ROP Diagnostic Backend -->
-        <section class="slide theme-green theme-split" data-slide="4" aria-label="Slide 4: ROP Diagnostic Backend">
+        <!-- Slide 4 — Step 1: ROP Diagnostic Backend (process cards) -->
+        <section class="slide" data-slide="4" aria-label="Slide 4: ROP Diagnostic Backend">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 4</div>
@@ -793,42 +950,28 @@
                 <span class="slide-tag">Clinical AI</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                First real experience taking a medical AI model from prototype to a backend that clinicians can actually use.
+                My first serious backend for a medical AI product.
               </div>
 
-              <ul class="bullet-list animate-list">
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Built backend infrastructure for an AI model detecting Retinopathy of Prematurity
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Designed APIs around segmentation and classification pipelines
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Integrated databases and handled data flow for medical usage
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Learned how to productionize AI models for clinical environments
-                  </span>
-                </li>
-              </ul>
+              <div class="process animate-body">
+                <div class="process-card">
+                  <strong>Model &amp; APIs</strong>
+                  Built backend infrastructure for an AI model detecting Retinopathy of Prematurity  
+                  Designed APIs around segmentation and classification pipelines
+                </div>
+                <div class="process-card">
+                  <strong>Data &amp; Deployment</strong>
+                  Integrated databases and handled data flow for medical usage  
+                  Learned how to productionize AI models for clinical environments
+                </div>
+              </div>
             </div>
 
             <aside class="slide-media animate-media">
               <div class="slide-media-title">System Diagram</div>
               <div class="media-placeholder">
-                Here you can show a backend architecture diagram (APIs → models → DB).
-                <br><br>
+                Show a backend diagram: client → API → model → DB.
+                <br /><br />
                 <code>&lt;img src="images/rop-backend.png" alt="ROP backend architecture" /&gt;</code>
               </div>
               <span class="media-chip">Backend / APIs</span>
@@ -836,8 +979,8 @@
           </div>
         </section>
 
-        <!-- Slide 5 — Sharif LLM Agents Hackathon -->
-        <section class="slide theme-softblue theme-split" data-slide="5" aria-label="Slide 5: Sharif LLM Agents Hackathon">
+        <!-- Slide 5 — Sharif LLM Agents Hackathon (timeline) -->
+        <section class="slide" data-slide="5" aria-label="Slide 5: Sharif LLM Agents Hackathon">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 5</div>
@@ -846,48 +989,33 @@
                 <span class="slide-tag">Agentic AI</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                Where I really started combining tools, retrieval, and LLMs into multi-agent systems.
+                A compressed journey into multi-agent systems and RAG.
               </div>
 
-              <ul class="bullet-list animate-list">
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Challenge: Build a full application using LLM agents
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Started from a prebuilt concept (similar to a surgical feedback system)
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Added multi-agent workflows for reasoning, retrieval, and structured reporting
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Ranked Top 10–12 among 132+ teams
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Learned agentic AI principles, tool use, and the need for reliable RAG
-                  </span>
-                </li>
-              </ul>
+              <div class="timeline animate-body">
+                <div class="timeline-item">
+                  Challenge: Build a full application using LLM agents
+                </div>
+                <div class="timeline-item">
+                  Started from a prebuilt concept (similar to a surgical feedback system)
+                </div>
+                <div class="timeline-item">
+                  Added multi-agent workflows for reasoning, retrieval, and structured reporting
+                </div>
+                <div class="timeline-item">
+                  Ranked Top 10–12 among 132+ teams
+                </div>
+                <div class="timeline-item">
+                  Learned agentic AI principles, tool use, and the need for reliable RAG
+                </div>
+              </div>
             </div>
 
             <aside class="slide-media animate-media">
               <div class="slide-media-title">Hackathon Snapshot</div>
               <div class="media-placeholder">
-                Add a team photo, hackathon logo, or simple multi-agent diagram here.
-                <br><br>
+                Team photo, event logo, or a small multi-agent diagram.
+                <br /><br />
                 <code>&lt;img src="images/hackathon.png" alt="Sharif LLM Agents Hackathon" /&gt;</code>
               </div>
               <span class="media-chip">Top 10–12 / 132+ teams</span>
@@ -895,67 +1023,53 @@
           </div>
         </section>
 
-        <!-- Slide 6 — Deep Dive into IR -->
-        <section class="slide theme-purple theme-split" data-slide="6" aria-label="Slide 6: Deep Dive into Information Retrieval">
+        <!-- Slide 6 — Deep Dive into IR (pyramid layout) -->
+        <section class="slide" data-slide="6" aria-label="Slide 6: Deep Dive into Information Retrieval">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 6</div>
               <div class="slide-title animate-title">
                 Step 3: Deep Dive into Information Retrieval
-                <span class="slide-tag">IR Foundations</span>
+                <span class="slide-tag">IR Pyramid</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                Learning how to design retrieval systems that LLM agents can trust.
+                Building up from classical IR to hybrid pipelines and evaluation.
               </div>
 
-              <ul class="bullet-list animate-list">
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+              <div class="pyramid-wrapper animate-body">
+                <div class="pyramid-label">Conceptual pyramid of what I studied:</div>
+                <div class="pyramid">
+                  <div class="pyramid-level level-1">
                     Studied classical IR: TF-IDF, BM25, inverted indexes
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+                  </div>
+                  <div class="pyramid-level level-2">
                     Moved to dense retrieval: bi-encoders, ColBERT
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+                  </div>
+                  <div class="pyramid-level level-3">
                     Explored hybrid methods: SPLADE, BM25 + SPLADE + dense + rerankers
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Learned IR evaluation metrics: MAP, nDCG, recall
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+                  </div>
+                  <div class="pyramid-level level-4">
+                    Learned IR evaluation metrics: MAP, nDCG, recall  
                     Goal: build trustworthy retrieval pipelines for LLM agents
-                  </span>
-                </li>
-              </ul>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <aside class="slide-media animate-media">
-              <div class="slide-media-title">IR Pipeline Sketch</div>
+              <div class="slide-media-title">IR Pipeline Visual</div>
               <div class="media-placeholder">
-                Visual idea: pipeline from documents → index → retriever → reranker → LLM.
-                <br><br>
-                <code>&lt;img src="images/ir-pipeline.png" alt="IR pipeline diagram" /&gt;</code>
+                Diagram idea: documents → index → retriever → reranker → LLM.
+                <br /><br />
+                <code>&lt;img src="images/ir-pipeline.png" alt="IR pipeline" /&gt;</code>
               </div>
               <span class="media-chip">IR / RAG</span>
             </aside>
           </div>
         </section>
 
-        <!-- Slide 7 — Occupational Health Platform -->
-        <section class="slide theme-green theme-split" data-slide="7" aria-label="Slide 7: Occupational Health Platform">
+        <!-- Slide 7 — Occupational Health Platform (workflow lanes) -->
+        <section class="slide" data-slide="7" aria-label="Slide 7: Occupational Health Platform">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 7</div>
@@ -964,54 +1078,34 @@
                 <span class="slide-tag">End-to-end System</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                Bringing everything together: vision, IR, ML, agents, and backend into one product.
+                An AI assistant that connects OCR, IR, ML, and agents into one workflow.
               </div>
 
-              <ul class="bullet-list animate-list">
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Built an end-to-end AI assistant for occupational medicine
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Extracts data from forms and lab PDFs using OCR + vision-language models
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Performs disease-risk estimation with ML models
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Designed a hybrid IR engine: BM25, SPLADE, dense retrieval, Cross-Encoder reranking
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Created multi-agent workflows for generating clinician-ready reports
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Engineered full backend using Django, FastAPI, Celery, PostgreSQL, Docker
-                  </span>
-                </li>
-              </ul>
+              <div class="workflow animate-body">
+                <div class="workflow-lane">
+                  <strong>Ingestion &amp; Understanding</strong>
+                  <ul class="workflow-list">
+                    <li>Built an end-to-end AI assistant for occupational medicine</li>
+                    <li>Extracts data from forms and lab PDFs using OCR + vision-language models</li>
+                    <li>Performs disease-risk estimation with ML models</li>
+                  </ul>
+                </div>
+                <div class="workflow-lane">
+                  <strong>Retrieval &amp; Backend</strong>
+                  <ul class="workflow-list">
+                    <li>Designed a hybrid IR engine: BM25, SPLADE, dense retrieval, Cross-Encoder reranking</li>
+                    <li>Created multi-agent workflows for generating clinician-ready reports</li>
+                    <li>Engineered full backend using Django, FastAPI, Celery, PostgreSQL, Docker</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <aside class="slide-media animate-media">
               <div class="slide-media-title">Platform Snapshot</div>
               <div class="media-placeholder">
-                Perfect place for a UI screenshot or architecture of the whole platform.
-                <br><br>
+                Put UI screenshots or an architecture diagram of the platform.
+                <br /><br />
                 <code>&lt;img src="images/occ-health.png" alt="Occupational health platform" /&gt;</code>
               </div>
               <span class="media-chip">Capstone project</span>
@@ -1019,8 +1113,8 @@
           </div>
         </section>
 
-        <!-- Slide 8 — What I Can Do Today -->
-        <section class="slide theme-softblue theme-split" data-slide="8" aria-label="Slide 8: What I Can Do Today">
+        <!-- Slide 8 — What I Can Do Today (skills grid) -->
+        <section class="slide" data-slide="8" aria-label="Slide 8: What I Can Do Today">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 8</div>
@@ -1029,95 +1123,80 @@
                 <span class="slide-tag">Current Skills</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                The areas where I can contribute immediately in an IR / LLM / backend team.
+                The main areas where I can contribute from day one.
               </div>
 
-              <ul class="bullet-list animate-list">
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    IR &amp; RAG: BM25, dense retrieval, SPLADE, hybrid search, reranking
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    LLM engineering: agent pipelines, tool-use, retrieval grounding, reliability
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Backend engineering: Django, FastAPI, Celery, Docker, PostgreSQL
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
-                    Strength: converting prototypes into reliable, production-ready systems
-                  </span>
-                </li>
-              </ul>
+              <div class="skills-grid animate-body">
+                <div class="skill-card">
+                  <strong>IR &amp; RAG</strong>
+                  IR &amp; RAG: BM25, dense retrieval, SPLADE, hybrid search, reranking
+                </div>
+                <div class="skill-card">
+                  <strong>LLM Engineering</strong>
+                  LLM engineering: agent pipelines, tool-use, retrieval grounding, reliability
+                </div>
+                <div class="skill-card">
+                  <strong>Backend Engineering</strong>
+                  Backend engineering: Django, FastAPI, Celery, Docker, PostgreSQL
+                </div>
+                <div class="skill-card">
+                  <strong>Strength</strong>
+                  Strength: converting prototypes into reliable, production-ready systems
+                </div>
+              </div>
             </div>
 
             <aside class="slide-media animate-media">
-              <div class="slide-media-title">Tech Stack Visual</div>
+              <div class="slide-media-title">Stack Visual</div>
               <div class="media-placeholder">
-                Consider a diagram with three columns (IR, LLM, Backend) and icons/logos.
-                <br><br>
-                <code>&lt;img src="images/skills.png" alt="Skills and stack" /&gt;</code>
+                Tech stack logos or a 3-column diagram (IR, LLM, Backend).
+                <br /><br />
+                <code>&lt;img src="images/skills.png" alt="Skills stack" /&gt;</code>
               </div>
               <span class="media-chip">IR · LLM · Backend</span>
             </aside>
           </div>
         </section>
 
-        <!-- Slide 9 — Where I Want to Grow -->
-        <section class="slide theme-purple theme-split" data-slide="9" aria-label="Slide 9: Where I Want to Grow">
+        <!-- Slide 9 — Where I Want to Grow (hierarchical tree) -->
+        <section class="slide" data-slide="9" aria-label="Slide 9: Where I Want to Grow">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 9</div>
               <div class="slide-title animate-title">
                 Where I Want to Grow
-                <span class="slide-tag">Next Steps</span>
+                <span class="slide-tag">Roadmap</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                Directions I’m excited to explore with the right team and mentorship.
+                How I’d like to evolve in an IR / agentic AI / medical environment.
               </div>
 
-              <ul class="bullet-list animate-list">
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+              <div class="tree animate-body">
+                <div class="tree-root">
+                  Where I Want to Grow
+                </div>
+                <div class="tree-children">
+                  <div class="tree-child">
                     More advanced RAG architectures with principled evaluation
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+                  </div>
+                  <div class="tree-child">
                     Scalable multi-agent systems for clinical and robotic environments
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+                  </div>
+                  <div class="tree-child">
                     Integrating robotics + AI + IR for surgical decision support
-                  </span>
-                </li>
-                <li>
-                  <span class="bullet-dot">•</span>
-                  <span class="bullet-text">
+                  </div>
+                  <div class="tree-child">
                     Building research-driven systems that meet real-world medical constraints
-                  </span>
-                </li>
-              </ul>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <aside class="slide-media animate-media">
-              <div class="slide-media-title">Future Map</div>
+              <div class="slide-media-title">Future Map Visual</div>
               <div class="media-placeholder">
-                You could show a roadmap graphic or simple 3-step “Future” diagram here.
-                <br><br>
+                Roadmap graphic or phased growth diagram.
+                <br /><br />
                 <code>&lt;img src="images/future-roadmap.png" alt="Future roadmap" /&gt;</code>
               </div>
               <span class="media-chip">Growth areas</span>
@@ -1125,8 +1204,8 @@
           </div>
         </section>
 
-        <!-- Slide 10 — Thank You -->
-        <section class="slide theme-end" data-slide="10" aria-label="Slide 10: Thank You">
+        <!-- Slide 10 — Thank You (simple) -->
+        <section class="slide" data-slide="10" aria-label="Slide 10: Thank You">
           <div class="slide-body">
             <div class="slide-main">
               <div class="slide-kicker animate-subtitle">Slide 10</div>
@@ -1135,10 +1214,10 @@
                 <span class="slide-tag">Q &amp; A</span>
               </div>
               <div class="slide-subtitle animate-subtitle">
-                I’m happy to go deeper into IR, agents, medical AI workflows, or backend decisions.
+                I’m happy to discuss architecture choices, trade-offs, or dig deeper into any of the projects.
               </div>
 
-              <div class="animate-list" style="margin-top:16px;">
+              <div class="animate-body" style="margin-top:16px;">
                 <p>I’m happy to discuss any part of this journey.</p>
                 <p class="contact-info" style="margin-top:10px;">
                   Contact:
@@ -1152,8 +1231,8 @@
             <aside class="slide-media animate-media">
               <div class="slide-media-title">Closing Visual</div>
               <div class="media-placeholder">
-                Any simple “thank you” visual, logo, or soft abstract background works well here.
-                <br><br>
+                Simple “Thank you” graphic, company logo, or calm abstract background.
+                <br /><br />
                 <code>&lt;img src="images/thank-you.png" alt="Thank you" /&gt;</code>
               </div>
               <span class="media-chip">Discussion</span>
@@ -1164,9 +1243,9 @@
       </div>
     </main>
 
-    <!-- Footer: Progress + Controls -->
+    <!-- Footer -->
     <footer class="footer">
-      <div class="progress-bar-wrapper">
+      <div class="progress-wrapper">
         <div class="progress-rail">
           <div id="progress-fill" class="progress-fill"></div>
         </div>
@@ -1204,7 +1283,7 @@
 
     let currentIndex = 0;
 
-    // Create small dot buttons (like mini slide selector)
+    // Create dot buttons
     const dots = [];
     for (let i = 0; i < totalSlides; i++) {
       const btn = document.createElement("button");
@@ -1241,7 +1320,6 @@
       updateIndicator(index);
       updateProgress(index);
 
-      // Disable buttons at edges (no looping to feel like PowerPoint)
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === totalSlides - 1;
     }
@@ -1254,7 +1332,6 @@
       if (currentIndex < totalSlides - 1) showSlide(currentIndex + 1);
     });
 
-    // Keyboard navigation
     document.addEventListener("keydown", (e) => {
       const activeElement = document.activeElement;
       if (["INPUT", "TEXTAREA"].includes(activeElement.tagName)) return;
@@ -1266,7 +1343,7 @@
       }
     });
 
-    // Start on first slide
+    // Initialize
     showSlide(0);
   </script>
 </body>
