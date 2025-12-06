@@ -8,31 +8,18 @@
     
     <style>
         /* --- 1. RESET & VARIABLES --- */
-       /* --- 🎨 Design Tokens / CSS Variables --- */
-:root {
-    /* Base Colors */
-    --color-primary: #2563EB;        /* Main Brand Blue (e.g., buttons, accents) */
-    --color-primary-dark: #1e3a8a;   /* Darker Primary for hover/dark mode elements */
-    --color-accent: #3B82F6;         /* Lighter Accent Blue */
-    --color-white: #ffffff;          /* Pure White */
-
-    /* Typography / Text Colors */
-    --color-text-main: #334155;      /* Primary Text Color (Dark Gray/Slate) */
-    --color-text-secondary: #1E293B; /* Secondary Text Color (Dark Slate/Headers) */
-    --color-text-light: #64748B;     /* Light Text for captions/subtitles */
-
-    /* Background Colors */
-    --color-bg-light: #F8FAFC;       /* Main Light Background Color */
-    --color-bg-dark-blue: #0f172a;   /* Contrast Background (Dark Blue) */
-    
-    /* Custom Color Additions for Specific Slides (Teal Theme) */
-    --color-bg-dark-teal: #0F403D;   /* Deep Teal Background */
-    --color-accent-teal: #34D399;    /* Bright Teal/Emerald Accent */
-
-    /* Effects */
-    --effect-shadow-lg: 0 12px 30px rgba(0,0,0,0.08); /* Large, Soft Box Shadow */
-    --effect-transition: all 0.4s ease-in-out;        /* Standard Transition Duration */
-}
+        :root {
+            --primary: #2563EB;       /* Professional Blue */
+            --primary-dark: #1e3a8a;
+            --secondary: #1E293B;     /* Dark Slate */
+            --accent: #3B82F6;        /* Lighter Blue */
+            --bg-color: #F8FAFC;      /* Very Light Gray/Blue */
+            --text-main: #334155;     /* Dark Gray for text */
+            --text-light: #64748B;    /* Lighter Gray */
+            --white: #ffffff;
+            --shadow: 0 12px 30px rgba(0,0,0,0.08);
+            --bg-dark: #0f172a;       /* For contrasting slides */
+        }
 
         * {
             box-sizing: border-box;
@@ -221,73 +208,28 @@
         }
 
         /* SLIDE 5: Step 2 Hackathon (Distinct Style: 3-Panel Blocks) */
-       /* --- SLIDE 5: Hackathon Panels Layout --- */
-.hackathon-panels {
-    /* Layout: Distribute three panels horizontally */
-    display: flex;
-    gap: 2rem;
-    margin-top: 3rem;
-    align-items: stretch; /* Ensures panels stretch to the same height */
-    
-    /* Responsive fallback for smaller screens */
-    @media (max-width: 1024px) {
-        flex-direction: column;
-    }
-}
+        .hackathon-panels {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: stretch;
+        }
+        .panel {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        .panel-header { font-weight: 800; color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;}
+        .panel ul { list-style: none; }
+        .panel li { margin-bottom: 0.8rem; font-size: 1rem; position: relative; padding-left: 1.5rem;}
+        .panel li::before { content: "→"; color: var(--accent); position: absolute; left: 0; }
+        .panel--outcome { background: var(--accent); color: white; }
+        .panel--outcome .panel-header, .panel--outcome li::before { color: white; }
 
-.panel {
-    /* Styling for the individual card/panel */
-    flex: 1; /* Allows each panel to take up equal horizontal space */
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: var(--effect-shadow-lg); /* Use the defined large shadow variable */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Base list and header styles for all panels */
-.panel-header { 
-    font-weight: 800; 
-    color: var(--color-primary); 
-    margin-bottom: 1rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1px;
-    font-size: 1.1rem; /* Added size for prominence */
-}
-.panel ul { 
-    list-style: none; 
-    /* Ensures list takes available space */
-    flex-grow: 1; 
-}
-.panel li { 
-    margin-bottom: 0.8rem; 
-    font-size: 1rem; 
-    position: relative; 
-    padding-left: 1.5rem;
-}
-.panel li::before { 
-    content: "→"; 
-    color: var(--color-accent); /* Used the semantically named variable */
-    position: absolute; 
-    left: 0; 
-    font-weight: bold;
-}
-
-/* A. Default Panel Styling (Used before dark mode theme was applied) */
-.panel-default {
-    background: var(--color-white);
-}
-
-/* B. Outcome Panel (Distinct Styling for the third block) */
-.panel--outcome { 
-    /* This original style is heavily modified in the new dark-teal theme CSS */
-    background: var(--color-accent); 
-    color: var(--color-white); 
-}
-.panel--outcome .panel-header, 
-.panel--outcome li::before { 
-    color: var(--color-white); 
-}
 
         /* SLIDE 6: Step 3 IR Deep Dive (Distinct Style: Process Timeline Flow) */
         .timeline-container {
@@ -316,60 +258,24 @@
         .timeline-node ul { font-size: 0.95rem; padding-left: 1.2rem; }
 
         /* SLIDE 7: Step 4 Capstone (Distinct Style: Architecture Diagram Layout) */
-        /* --- SLIDE 7: Architecture Grid Layout --- */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            background: white; padding: 3rem; border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .arch-block h3 { color: var(--primary); margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;}
+        .tech-stack-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+        }
+        .tech-item {
+            background: var(--bg-color); padding: 0.8rem; border-radius: 8px;
+            text-align: center; font-weight: 600; font-size: 0.9rem; color: var(--secondary);
+        }
 
-.architecture-grid {
-    /* Main container: creates a distinct card effect over the dark background */
-    display: grid;
-    /* Layout: Wider column for features (1.2 units) and narrower for tech stack (0.8 units) */
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
-    margin-top: 3rem;
-    
-    /* Styling for the container when using the dark teal theme */
-    background: var(--color-bg-dark-teal); /* Deep Teal background for content area */
-    padding: 3rem; 
-    border-radius: 20px;
-    box-shadow: var(--effect-shadow-lg); 
-}
 
-/* Styling for the internal section headers */
-.arch-block h3 { 
-    color: var(--color-accent-teal); /* Bright Teal for subheadings */
-    margin-bottom: 1.5rem; 
-    /* Subtle separation line */
-    border-bottom: 2px solid #296d6a; /* Darker teal line for contrast */
-    padding-bottom: 0.5rem;
-}
-
-/* --- Tech Stack Section --- */
-
-.tech-stack-grid {
-    /* Layout: Grid specifically for the technology list */
-    display: grid; 
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 1rem;
-}
-
-.tech-item {
-    /* Styling for individual technology boxes (e.g., 'Django', 'Docker') */
-    background: #0F403D; /* Deepest Teal for maximum contrast */
-    color: var(--color-accent-teal); /* Bright Teal text for readability */
-    padding: 0.8rem; 
-    border-radius: 8px;
-    text-align: center; 
-    font-weight: 600; 
-    font-size: 0.9rem;
-    /* Added subtle border to distinguish items */
-    border: 1px solid #145E5A; 
-}
-
-/* Responsive adjustment for small screens */
-@media (max-width: 1024px) {
-    .architecture-grid {
-        grid-template-columns: 1fr; /* Stack columns vertically on mobile/tablet */
-    }
-}
         /* SLIDE 8 & 9 (Bullet style re-used but clean) */
         .slide--standard-list h2 { font-size: 2.5rem; margin-bottom: 2.5rem; color: var(--primary); }
         
@@ -480,10 +386,7 @@
                         <li>Built backend infrastructure for AI model detecting Retinopathy of Prematurity</li>
                         <li>Designed APIs around segmentation and classification pipelines</li>
                         <li>Integrated databases and handled data flow for medical usage</li>
-                        <ul class="bullet-list delay-2 animate-up" style="font-size: 1.1rem;">
-    <li>Learned how to productionize AI models for clinical environments</li>
-</ul>
-<button onclick="alert('Insert ROP Outcome Link Here')" class="btn-link animate-up delay-3">View ROP Outcome</button>
+                        <li>Learned how to productionize AI models for clinical environments</li>
                     </ul>
                 </div>
                 <div class="right-image delay-3 animate-up">
