@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Journey at ARAS - Presentation</title>
+
+    <style>
+        /* =========================
+       Base Layout & Typography
+       ========================= */
+        :root {
+            --bg: #f5f7fb;
+            --card-bg: #ffffff;
+            --accent: #2563eb;
+            --accent-soft: rgba(37, 99, 235, 0.08);
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border-subtle: #e5e7eb;
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+            --radius-xl: 24px;
+            --transition-fast: 0.35s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                sans-serif;
+            background: radial-gradient(circle at top left, #e0ebff 0, #f5f7fb 45%, #ffffff 100%);
+            color: var(--text-main);
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        /* =========================
+       Presentation Shell
+       ========================= */
+        .presentation {
+            position: relative;
+            max-width: 1100px;
+            width: 100%;
+            min-height: calc(100vh - 48px);
+            background: linear-gradient(135deg, #ffffff, #f9fbff);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 24px 20px 24px;
+            overflow: hidden;
+        }
+
+        /* Top bar: name + slide indicator */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 4px 12px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 8px;
+        }
+
+        .brand-area {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: radial-gradient(circle, var(--accent) 0, #93c5fd 60%, transparent 100%);
+        }
+
+        .brand-name {
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        .slide-indicator {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        /* =========================
+       Slides Container & Slides
+       ========================= */
+        .slides-wrapper {
+            position: relative;
+            flex: 1;
+            margin-top: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .slides-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            padding: 28px 32px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(40px);
+            pointer-events: none;
+            transition: opacity var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .slide-card {
+            width: 100%;
+            max-width: 900px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 32px 36px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .slide-title {
+            font-size: 1.6rem;
+            line-height: 1.25;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slide-title span.tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #eff6ff;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .slide-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        .slide-body {
+            margin-top: 10px;
+            font-size: 0.98rem;
+            line-height: 1.9;
+            color: var(--text-main);
+        }
+
+        .slide-body p+p {
+            margin-top: 0.6rem;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin-top: 4px;
+        }
+
+        .bullet-list li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .bullet-dot {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .bullet-text {
+            flex: 1;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(37, 99, 235, 0.4);
+        }
+
+        .contact-info a:hover {
+            border-bottom-style: solid;
+        }
+
+        /* =========================
+       Footer Controls
+       ========================= */
+        .footer-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 8px 4px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* Progress dots */
+        .progress-dots {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.4);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: rgba(37, 99, 235, 0.7);
+        }
+
+        /* Prev / Next buttons */
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            border-radius: 999px;
+            padding: 8px 16px;
+            border: 1px solid rgba(148, 163, 184, 0.9);
+            background: #ffffff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s ease, transform 0.15s ease,
+                box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .nav-btn.primary {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+        }
+
+        .nav-btn span.icon {
+            font-size: 1rem;
+            line-height: 0;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        .nav-btn.secondary:hover:not(:disabled) {
+            background: #f3f4f6;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        .nav-btn:disabled {
+            cursor: default;
+            opacity: 0.5;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Help text */
+        .keyboard-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* =========================
+       Responsive Tweaks
+       ========================= */
+        @media (max-width: 900px) {
+            body {
+                padding: 16px;
+            }
+
+            .presentation {
+                padding: 16px;
+                min-height: calc(100vh - 32px);
+            }
+
+            .slide-card {
+                padding: 22px 22px;
+                border-radius: 16px;
+            }
+
+            .slide-title {
+                font-size: 1.35rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 8px;
+            }
+
+            .presentation {
+                padding: 12px 12px 10px;
+                border-radius: 18px;
+            }
+
+            .slide {
+                padding: 14px 6px 10px;
+            }
+
+            .slide-card {
+                padding: 18px 16px 18px;
+                border-radius: 14px;
+                box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+            }
+
+            .slide-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .footer-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .nav-buttons {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .nav-btn {
+                padding-inline: 14px;
+            }
+
+            .keyboard-hint {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="presentation" aria-label="Slide presentation">
+
+        <!-- Top bar: name + slide indicator -->
+        <header class="top-bar">
+            <div class="brand-area">
+                <span class="brand-dot" aria-hidden="true"></span>
+                <div>
+                    <div class="brand-name">Amir Hosseinpoor</div>
+                    <div style="font-size:0.75rem; color:var(--text-muted);">
+                        AI Engineer — ARAS Robotics &amp; AI Solutions
+                    </div>
+                </div>
+            </div>
+            <div id="slide-indicator" class="slide-indicator" aria-live="polite">
+                Slide 1 / 10
+            </div>
+        </header>
+
+        <!-- Slides -->
+        <main class="slides-wrapper">
+            <div class="slides-inner">
+
+                <!-- Slide 1 — Title -->
+                <section class="slide active" data-slide="1" aria-label="Slide 1: Title">
+                    <div class="slide-card">
+                        <h1 class="slide-title">
+                            My Journey at ARAS: From Medical AI to Agentic IR Systems
+                            <span class="tag">Slide 1 — Title</span>
+                        </h1>
+                        <div class="slide-body">
+                            <p><strong>Amir Hosseinpoor</strong></p>
+                            <p>AI Engineer — ARAS Robotics &amp; AI Solutions</p>
+                            <div class="contact-info">
+                                <p>
+                                    <a href="mailto:amirhosseinpoora6@gmail.com">
+                                        amirhosseinpoora6@gmail.com
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="https://amirhosseinpoor.github.io" target="_blank"
+                                        rel="noopener noreferrer">
+                                        amirhosseinpoor.github.io
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 2 — Who I Am -->
+                <section class="slide" data-slide="2" aria-label="Slide 2: Who I Am">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            Who I Am
+                            <span class="tag">Slide 2</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        B.Sc. Electrical Engineering — AI Track (KNTU)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        AI Software Engineer at ARAS Robotics &amp; AI Solutions
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Focus areas: Information Retrieval, LLM Agents, Backend Engineering
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Passion for turning research ideas into deployable AI systems
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3 — About ARAS -->
+                <section class="slide" data-slide="3" aria-label="Slide 3: About ARAS">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            About ARAS
+                            <span class="tag">Slide 3</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        ARAS develops robotic and AI-powered systems to assist surgeons
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Work involves surgical robotics, medical AI, and intelligent automation
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        My role focuses on embedding IR + LLM agent pipelines into medical workflows
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Mission: enhance surgical performance with reliable AI assistance
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4 — Step 1: Beginning with ROP Diagnostic Backend -->
+                <section class="slide" data-slide="4" aria-label="Slide 4: ROP Diagnostic Backend">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            Step 1: Beginning with ROP Diagnostic Backend
+                            <span class="tag">Slide 4</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Built backend infrastructure for an AI model detecting Retinopathy of
+                                        Prematurity
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Designed APIs around segmentation and classification pipelines
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Integrated databases and handled data flow for medical usage
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Learned how to productionize AI models for clinical environments
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 5 — Step 2: Sharif LLM Agents Hackathon -->
+                <section class="slide" data-slide="5" aria-label="Slide 5: Sharif LLM Agents Hackathon">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            Step 2: Sharif LLM Agents Hackathon
+                            <span class="tag">Slide 5</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Challenge: Build a full application using LLM agents
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Started from a prebuilt concept (similar to a surgical feedback system)
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Added multi-agent workflows for reasoning, retrieval, and structured reporting
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Ranked Top 10–12 among 132+ teams
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Learned agentic AI principles, tool use, and the need for reliable RAG
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 6 — Step 3: Deep Dive into Information Retrieval -->
+                <section class="slide" data-slide="6" aria-label="Slide 6: Deep Dive into Information Retrieval">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            Step 3: Deep Dive into Information Retrieval
+                            <span class="tag">Slide 6</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Studied classical IR: TF-IDF, BM25, inverted indexes
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Moved to dense retrieval: bi-encoders, ColBERT
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Explored hybrid methods: SPLADE, BM25 + SPLADE + dense + rerankers
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Learned IR evaluation metrics: MAP, nDCG, recall
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Goal: build trustworthy retrieval pipelines for LLM agents
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 7 — Step 4: Occupational Health Platform (Capstone) -->
+                <section class="slide" data-slide="7" aria-label="Slide 7: Occupational Health Platform">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            Step 4: Occupational Health Platform (Capstone)
+                            <span class="tag">Slide 7</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Built an end-to-end AI assistant for occupational medicine
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Extracts data from forms and lab PDFs using OCR + vision-language models
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Performs disease-risk estimation with ML models
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Designed a hybrid IR engine: BM25, SPLADE, dense retrieval, Cross-Encoder
+                                        reranking
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Created multi-agent workflows for generating clinician-ready reports
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Engineered full backend using Django, FastAPI, Celery, PostgreSQL, Docker
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 8 — What I Can Do Today -->
+                <section class="slide" data-slide="8" aria-label="Slide 8: What I Can Do Today">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            What I Can Do Today
+                            <span class="tag">Slide 8</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        IR &amp; RAG: BM25, dense retrieval, SPLADE, hybrid search, reranking
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        LLM engineering: agent pipelines, tool-use, retrieval grounding, reliability
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Backend engineering: Django, FastAPI, Celery, Docker, PostgreSQL
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Strength: converting prototypes into reliable, production-ready systems
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 9 — Where I Want to Grow -->
+                <section class="slide" data-slide="9" aria-label="Slide 9: Where I Want to Grow">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            Where I Want to Grow
+                            <span class="tag">Slide 9</span>
+                        </h2>
+                        <div class="slide-body">
+                            <ul class="bullet-list">
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        More advanced RAG architectures with principled evaluation
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Scalable multi-agent systems for clinical and robotic environments
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Integrating robotics + AI + IR for surgical decision support
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="bullet-dot">•</span>
+                                    <span class="bullet-text">
+                                        Building research-driven systems that meet real-world medical constraints
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 10 — Thank You -->
+                <section class="slide" data-slide="10" aria-label="Slide 10: Thank You">
+                    <div class="slide-card">
+                        <h2 class="slide-title">
+                            Thank You
+                            <span class="tag">Slide 10</span>
+                        </h2>
+                        <div class="slide-body">
+                            <p>I’m happy to discuss any part of this journey.</p>
+                            <p class="contact-info">
+                                Contact:
+                                <a href="mailto:amirhosseinpoora6@gmail.com">
+                                    amirhosseinpoora6@gmail.com
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer: progress + nav buttons -->
+        <footer class="footer-bar">
+            <div>
+                <div class="progress-dots" id="progress-dots" aria-label="Slide progress"></div>
+                <div class="keyboard-hint">
+                    Use <strong>←</strong> and <strong>→</strong> keys to navigate.
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev-btn" class="nav-btn secondary" type="button">
+                    <span class="icon">←</span>
+                    Previous
+                </button>
+                <button id="next-btn" class="nav-btn primary" type="button">
+                    Next
+                    <span class="icon">→</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- =========================
+       Minimal Vanilla JS
+       ========================= -->
+    <script>
+        // Collect slides and controls
+        const slides = Array.from(document.querySelectorAll(".slide"));
+        const slideIndicator = document.getElementById("slide-indicator");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const progressDotsContainer = document.getElementById("progress-dots");
+
+        const totalSlides = slides.length;
+        let currentIndex = 0; // 0-based
+
+        // Create clickable progress dots
+        const dots = [];
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement("button");
+            dot.className = "dot";
+            dot.type = "button";
+            dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+            dot.addEventListener("click", () => {
+                showSlide(i);
+            });
+            progressDotsContainer.appendChild(dot);
+            dots.push(dot);
+        }
+
+        // Update UI to show a particular slide index
+        function showSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+
+            // Remove "active" from all slides
+            slides.forEach((slide) => slide.classList.remove("active"));
+
+            // Add "active" to current slide
+            slides[index].classList.add("active");
+
+            // Update slide indicator text
+            slideIndicator.textContent = "Slide " + (index + 1) + " / " + totalSlides;
+
+            // Update progress dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("active", i === index);
+            });
+
+            // Enable/disable navigation buttons at edges (no looping)
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === totalSlides - 1;
+
+            currentIndex = index;
+        }
+
+        // Hook up buttons
+        prevBtn.addEventListener("click", () => {
+            if (currentIndex > 0) {
+                showSlide(currentIndex - 1);
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (currentIndex < totalSlides - 1) {
+                showSlide(currentIndex + 1);
+            }
+        });
+
+        // Keyboard navigation: Left and Right arrows
+        document.addEventListener("keydown", (event) => {
+            // Avoid interfering with text inputs in case you add any later
+            const activeElement = document.activeElement;
+            const typingTagNames = ["INPUT", "TEXTAREA"];
+            if (typingTagNames.includes(activeElement.tagName)) {
+                return;
+            }
+
+            if (event.key === "ArrowRight") {
+                // Next slide
+                if (currentIndex < totalSlides - 1) {
+                    showSlide(currentIndex + 1);
+                }
+            } else if (event.key === "ArrowLeft") {
+                // Previous slide
+                if (currentIndex > 0) {
+                    showSlide(currentIndex - 1);
+                }
+            }
+        });
+
+        // Initialize first slide correctly
+        showSlide(0);
+    </script>
+</body>
+
+</html>
