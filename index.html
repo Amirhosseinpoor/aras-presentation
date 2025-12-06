@@ -257,6 +257,34 @@
         .timeline-node h4 { text-align: center; margin-top: 1rem; margin-bottom: 1rem;}
         .timeline-node ul { font-size: 0.95rem; padding-left: 1.2rem; }
 
+        /* >>> NEW: Slide 6 special color theme (teal) <<< */
+        .slide--timeline {
+            background: #0f766e; /* Teal contrast instead of dark blue */
+            color: var(--white);
+        }
+        .slide--timeline h2 {
+            color: #e0f2fe;
+        }
+        .slide--timeline p {
+            color: #e0f2fe;
+        }
+        .slide--timeline .timeline-container::before {
+            background: rgba(148, 163, 184, 0.7);
+        }
+        .slide--timeline .timeline-node {
+            background: rgba(15, 23, 42, 0.95);
+            border-top-color: #67e8f9;
+        }
+        .slide--timeline .timeline-node h4 {
+            color: #e0f2fe;
+        }
+        .slide--timeline .timeline-node ul {
+            color: #e5e7eb;
+        }
+        .slide--timeline .node-icon {
+            background: #06b6d4;
+        }
+
         /* SLIDE 7: Step 4 Capstone (Distinct Style: Architecture Diagram Layout) */
         .architecture-grid {
             display: grid;
@@ -484,7 +512,8 @@
                             <div class="tech-item">Dockerized</div>
                         </div>
                          <div style="text-align: center;">
-                             <button onclick="alert('Replace this alert with actual link')" class="btn-link animate-up delay-2">View Project Outcome</button>
+                             <!-- UPDATED: real link button, same style as slide 5 -->
+                             <a href="YOUR_PROJECT_OUTCOME_LINK_HERE" target="_blank" class="btn-link animate-up delay-2">View Project Outcome</a>
                          </div>
                     </div>
                 </div>
@@ -525,7 +554,8 @@
             </div>
         </div>
 
-    </div> <div class="controls-container">
+    </div> 
+    <div class="controls-container">
         <div class="slide-counter" id="slideCounter">1 / 10</div>
         <button class="nav-btn" id="btnPrev" aria-label="Previous">←</button>
         <button class="nav-btn" id="btnNext" aria-label="Next">→</button>
@@ -576,7 +606,3 @@
 
 </body>
 </html>
-
-
-
-
