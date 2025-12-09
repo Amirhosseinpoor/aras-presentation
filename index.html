@@ -499,9 +499,9 @@
                     <div class="arch-block main-features">
                         <h3>System Capabilities</h3>
                          <ul class="bullet-list" style="font-size: 1rem;">
-                            <li>Extracts data from forms/PDFs (OCR + Vision-LLMs)</li>
+                            <li>Extracts data from forms/PDFs (OCR + VLMs)</li>
                             <li>Performs disease-risk estimation via ML models</li>
-                            <li>Hybrid IR Engine: BM25, SPLADE, Cross-Encoder reranking</li>
+                            <li>Agentic RAG with Hybrid IR Engine (BM25, SPLADE) and external search API integration</li>
                             <li>Multi-agent workflows for clinician-ready reports</li>
                         </ul>
                     </div>
@@ -509,9 +509,9 @@
                         <h3>Backend Engineering Stack</h3>
                         <div class="tech-stack-grid">
                             <div class="tech-item">Django & FastAPI</div>
-                            <div class="tech-item">Celery (Async)</div>
+                            <div class="tech-item">Celery</div>
                             <div class="tech-item">PostgreSQL</div>
-                            <div class="tech-item">Dockerized</div>
+                            <div class="tech-item">Docker</div>
                         </div>
                          <div style="text-align: center;">
                              <a href="YOUR_PROJECT_OUTCOME_LINK_HERE" target="_blank" class="btn-link animate-up delay-2">View Project Outcome</a>
@@ -524,33 +524,37 @@
         <!-- PAGE 6 -->
         <div class="slide slide--timeline" data-index="5">
             <div class="content-wrapper animate-up">
-                <h2>Step 3: Deep Dive into Information Retrieval</h2>
-                <p class="delay-1 animate-up" style="font-size: 1.2rem; margin-bottom: 2rem;">Goal: Building trustworthy retrieval pipelines for LLM agents</p>
+                <h2>Step 4: Deep Dive into Information Retrieval</h2>
+                <p class="delay-1 animate-up" style="font-size: 1.2rem; margin-bottom: 2rem;">Goal: Building trustworthy retrieval pipelines for Occupational Health Platform Using Pyserini</p>
                 
                 <div class="timeline-container delay-2 animate-up">
                     <div class="timeline-node">
                         <div class="node-icon">1</div>
-                        <h4>Classical IR</h4>
+                        <h4>Sparse Retrieval</h4>
                          <ul>
-                            <li>TF-IDF</li>
-                            <li>BM25</li>
-                            <li>Inverted Indexes</li>
+                            
+        <li>BM25 fine-tuned with grid search</li>
+        <li>Inverted indexes</li>
+        <li>Manual creation of Qrels</li>
                         </ul>
                     </div>
                     <div class="timeline-node delay-1 animate-up">
                          <div class="node-icon">2</div>
                         <h4>Dense Retrieval</h4>
                          <ul>
-                            <li>Bi-encoders</li>
-                            <li>ColBERT embeddings</li>
+        <li>BGE-based reranking</li>
+        <li>Contextual embeddings</li>
+        <li>Semantic matching</li>
+                            
                         </ul>
                     </div>
                      <div class="timeline-node delay-2 animate-up">
                          <div class="node-icon">3</div>
-                        <h4>Hybrid & Metrics</h4>
+                       <h4>Hybrid & Evaluation</h4>
                          <ul>
-                            <li>SPLADE + Rerankers</li>
-                            <li>Eval: MAP, nDCG, Recall</li>
+                                    <li>Combining classical and dense methods</li>
+        <li>MAP & nDCG metrics</li>
+        <li>Performance analysis</li>
                         </ul>
                     </div>
                 </div>
@@ -646,6 +650,7 @@
 
 </body>
 </html>
+
 
 
 
