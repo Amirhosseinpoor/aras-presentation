@@ -530,21 +530,22 @@
                 <div class="timeline-container delay-2 animate-up">
                     <div class="timeline-node">
                         <div class="node-icon">1</div>
-                        <h4>Sparse Retrieval</h4>
+                        <h4>Preprocessing & Indexing</h4>
                          <ul>
-                            
-        <li>BM25 fine-tuned with grid search</li>
-        <li>Inverted indexes</li>
-        <li>Manual creation of Qrels</li>
+                           <li>Tokenization</li> 
+        <li>Stemming & Stopword removal</li>
+        <li>Inverted index construction</li>
+        
                         </ul>
                     </div>
                     <div class="timeline-node delay-1 animate-up">
                          <div class="node-icon">2</div>
-                        <h4>Dense Retrieval</h4>
+                        <h4>Sparse–Dense Retrieval</h4>
                          <ul>
-        <li>BGE-based reranking</li>
-        <li>Contextual embeddings</li>
-        <li>Semantic matching</li>
+        
+        <li>SPLADE (learned sparse representations)</li>
+        <<li>BM25 fine-tuned with grid search</li>
+            <li>BGE-based reranking</li>
                             
                         </ul>
                     </div>
@@ -552,9 +553,10 @@
                          <div class="node-icon">3</div>
                        <h4>Hybrid & Evaluation</h4>
                          <ul>
-                                    <li>Combining classical and dense methods</li>
+                                   <li>Hybrid search design</li>
+                             <li>Manual Qrels creation</li>
         <li>MAP & nDCG metrics</li>
-        <li>Performance analysis</li>
+        
                         </ul>
                     </div>
                 </div>
@@ -650,6 +652,7 @@
 
 </body>
 </html>
+
 
 
 
