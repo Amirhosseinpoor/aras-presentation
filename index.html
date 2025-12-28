@@ -611,6 +611,303 @@
             .logo-container { margin-top: 1rem; }
             .img-placeholder { min-height: 250px; height: auto;}
         }
+        /* ======================================================
+   PAGE 7 — ML DEEP DIVE
+====================================================== */
+
+.slide--ml-deepdive {
+    background: linear-gradient(145deg, #f8fafc, #eef2ff);
+}
+
+.slide--ml-deepdive h2 {
+    color: var(--primary);
+    font-size: 2.6rem;
+}
+
+.slide--ml-deepdive .subtitle {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+.ml-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.ml-card {
+    background: white;
+    border-radius: 18px;
+    padding: 2.2rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    border-top: 6px solid var(--primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ml-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+.ml-card h3 {
+    margin-bottom: 1.2rem;
+    color: var(--secondary);
+}
+
+.ml-card ul {
+    list-style: none;
+}
+
+.ml-card li {
+    margin-bottom: 0.7rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.ml-card li::before {
+    content: "✓";
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+}
+
+.ml-card.highlight {
+    background: linear-gradient(145deg, #2563eb, #3b82f6);
+    color: white;
+}
+
+.ml-card.highlight h3,
+.ml-card.highlight li::before {
+    color: white;
+}
+
+
+/* ======================================================
+   PAGE 8 — NETWORK DYNAMICS CONCEPTS
+====================================================== */
+
+.slide--concepts {
+    background: #0f172a;
+    color: white;
+}
+
+.slide--concepts h2 {
+    color: #e0f2fe;
+    font-size: 2.6rem;
+}
+
+.concept-pill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.concept-pill-grid span {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    border-radius: 999px;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.concept-pill-grid span:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+}
+
+
+/* ======================================================
+   PAGE 9 — RESEARCH QUESTIONS
+====================================================== */
+
+.slide--questions {
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    color: white;
+}
+
+.slide--questions h2 {
+    font-size: 2.7rem;
+    margin-bottom: 3rem;
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.question-item {
+    background: rgba(255,255,255,0.15);
+    padding: 2rem;
+    border-radius: 16px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+/* ======================================================
+   PAGE 10 — BEST RESPONSE DYNAMICS
+====================================================== */
+
+.slide--dynamics {
+    background: #f8fafc;
+}
+
+.slide--dynamics h2 {
+    font-size: 2.6rem;
+    color: var(--primary);
+}
+
+.slide--dynamics p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.slide--dynamics .bullet-list li {
+    font-size: 1.3rem;
+}
+
+.slide--dynamics .bullet-list li::before {
+    color: var(--primary);
+}
+
+
+/* ======================================================
+   PAGE 11 — PAYOFF & THRESHOLD (MATH)
+====================================================== */
+
+.slide--math-clean {
+    background: #020617;
+    color: #e5e7eb;
+}
+
+.slide--math-clean h2 {
+    color: #38bdf8;
+    font-size: 2.6rem;
+}
+
+.math-panel {
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 18px;
+    padding: 3rem;
+    margin-top: 3rem;
+    box-shadow: inset 0 0 0 1px rgba(56,189,248,0.15);
+}
+
+.math-panel .formula {
+    font-size: 1.7rem;
+    text-align: center;
+    margin: 2rem 0;
+    color: #fbbf24;
+}
+
+
+/* ======================================================
+   PAGE 12 — LYAPUNOV FUNCTION
+====================================================== */
+
+.slide--lyapunov-clean {
+    background: radial-gradient(circle at top, #1e293b, #020617);
+    color: white;
+}
+
+.slide--lyapunov-clean h2 {
+    color: #67e8f9;
+}
+
+.lyapunov-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.lyap-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border-left: 6px solid #22d3ee;
+    backdrop-filter: blur(10px);
+}
+
+.lyap-card h3 {
+    margin-bottom: 1.5rem;
+}
+
+.lyap-card .formula {
+    font-size: 1.6rem;
+    color: #fde68a;
+    text-align: center;
+}
+
+
+/* ======================================================
+   PAGE 13 — THRESHOLD TRANSFORMATION
+====================================================== */
+
+.slide--threshold-clean {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: white;
+}
+
+.slide--threshold-clean h2 {
+    font-size: 2.6rem;
+}
+
+.slide--threshold-clean .bullet-list li {
+    font-size: 1.3rem;
+}
+
+.slide--threshold-clean .formula {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #fef3c7;
+}
+
+
+/* ======================================================
+   PAGE 14 — CONVERGENCE
+====================================================== */
+
+.slide--conclusion-research {
+    background: #0f172a;
+    color: white;
+}
+
+.slide--conclusion-research h2 {
+    font-size: 2.6rem;
+    color: #e0f2fe;
+}
+
+.conclusion-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.conclusion-card {
+    background: rgba(255,255,255,0.08);
+    padding: 2.5rem;
+    border-radius: 18px;
+    text-align: center;
+    border-top: 6px solid #38bdf8;
+}
+
+.conclusion-card h3 {
+    margin-bottom: 1rem;
+    color: #67e8f9;
+}
+
     </style>
 </head>
 <body>
@@ -996,6 +1293,7 @@
 
 </body>
 </html>
+
 
 
 
