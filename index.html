@@ -590,12 +590,11 @@
             </div>
         </div>
         <!-- PAGE 8 -->
-        
 <div class="slide slide--paper-intro" data-index="5">
     <div class="content-wrapper animate-up">
         <h2>Deep Dive: Network Dynamics</h2>
         <p style="color: var(--text-light);">Analysis of: <i>"Networks of conforming or nonconforming individuals..."</i></p>
-        
+
         <div class="concept-grid delay-1 animate-up">
             <div class="concept-card">
                 <div class="proof-tag">Coordinating</div>
@@ -613,34 +612,65 @@
         </p>
     </div>
 </div>
-        <div class="slide slide--math" data-index="6">
+<div class="slide slide--math" data-index="6">
     <div class="content-wrapper animate-up">
         <h2 style="color: white;">The Best-Response Math</h2>
-        
+
         <div class="math-box delay-1 animate-up">
-            <p>1. The Linear Threshold Strategy</p>
-            <div class="formula-text">n<sub>A</sub> > &tau;<sub>i</sub> &middot; deg<sub>i</sub></div>
-            <p style="font-size: 0.9rem; color: #94a3b8;">Where &tau; is the normalized tipping point derived from the payoff matrix.</p>
+            <p>1. The **Linear Threshold Strategy**</p>
+            <div class="formula-text">\( n_A > \tau_i \cdot \text{deg}_i \)</div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">Where \( \tau_i \) is the normalized tipping point derived from the payoff matrix. If \( n_A \) exceeds this threshold, the agent will switch to action A.</p>
         </div>
 
         <div class="math-box delay-2 animate-up">
-            <p>2. The Lyapunov Potential (&Phi;)</p>
-            <div class="formula-text">&Delta;&Phi; < 0</div>
-            <p style="font-size: 0.9rem; color: #94a3b8;">Proving that every switch reduces global "energy," guaranteeing convergence to a Nash Equilibrium.</p>
+            <p>2. The **Lyapunov Potential** (\( \Phi \))</p>
+            <div class="formula-text">\( \Delta \Phi < 0 \)</div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">The Lyapunov function guarantees that the system reaches equilibrium by continuously decreasing its energy with each agent's switch.</p>
         </div>
     </div>
 </div>
-        <div class="slide" data-index="8">
+<div class="slide slide--dark-split" data-index="7">
     <div class="content-wrapper animate-up">
-        <h2>Connecting the Dots</h2>
-        <ul class="bullet-list delay-1 animate-up">
-            <li><strong>Simulation Expertise:</strong> I can build the high-performance backends required to simulate these 6|E| transitions on massive scale graphs.</li>
-            <li><strong>Agentic Systems:</strong> My work in LLM agents aligns with the <i>"Best-Response"</i> logic—treating AI agents as strategic players in a network.</li>
-            <li><strong>Goal:</strong> I want to apply my software engineering rigor to prove new stability conditions in evolutionary game theory.</li>
-        </ul>
+        <h2>Equal Thresholds & Dummy Nodes</h2>
+        <h3>Equalizing Thresholds</h3>
+        <div class="math-box delay-1 animate-up">
+            <p>1. **Standardizing Thresholds**</p>
+            <div class="formula-text">Threshold \( \tau_i = \frac{1}{2} \)</div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">By assigning all agents an equal threshold, we can simplify the system and treat it as if all agents behave similarly.</p>
+        </div>
+
+        <h3>Dummy Nodes</h3>
+        <div class="math-box delay-2 animate-up">
+            <p>2. **Using Dummy Nodes (V-blocks)**</p>
+            <div class="formula-text">\( \tau_i = \frac{1}{2} \) for all agents, achieved using V-blocks.</div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">The V-blocks simulate the behavior of heterogeneous agents, normalizing them to a uniform threshold for simplicity.</p>
+        </div>
     </div>
 </div>
+<div class="slide slide--timeline" data-index="8">
+    <div class="content-wrapper animate-up">
+        <h2>Total Switches & Convergence Time</h2>
+        <p class="delay-1 animate-up" style="font-size: 1.2rem; margin-bottom: 2rem;">Understanding the upper bounds for total switches in the system.</p>
 
+        <div class="timeline-container delay-2 animate-up">
+            <div class="timeline-node">
+                <div class="node-icon">1</div>
+                <h4>Upper Bound on Switches</h4>
+                <ul>
+                    <li>The total number of strategy switches is limited to \( 6 |E| \), where \( |E| \) is the number of edges in the network.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-node delay-1 animate-up">
+                <div class="node-icon">2</div>
+                <h4>Convergence Time</h4>
+                <ul>
+                    <li>The system converges in linear time relative to the size of the network.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 
         <!-- PAGE 10 -->
@@ -706,6 +736,7 @@
 
 </body>
 </html>
+
 
 
 
