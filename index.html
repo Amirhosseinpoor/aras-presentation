@@ -358,7 +358,29 @@
             background: linear-gradient(90deg, var(--primary), var(--accent));
             width: 0%; transition: width 0.5s ease-in-out; z-index: 100;
         }
+        /* --- RESEARCH ANALYSIS STYLES --- */
+.slide--paper-intro { background: #ffffff; }
+.concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.concept-card { 
+    padding: 1.5rem; border-radius: 12px; border-top: 6px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); background: #f8fafc;
+}
 
+.slide--math { background: #0f172a; color: #f1f5f9; }
+.math-box {
+    background: #1e293b; padding: 2rem; border-radius: 15px;
+    border: 1px solid #334155; margin-bottom: 2rem;
+}
+.formula-text { 
+    font-family: 'Fira Code', monospace; color: #fbbf24; 
+    font-size: 1.6rem; text-align: center; margin: 1rem 0;
+}
+
+.proof-tag {
+    display: inline-block; background: var(--primary); color: white;
+    padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
+    margin-bottom: 10px; text-transform: uppercase;
+}
         /* RESPONSIVE TWEAKS */
         @media (max-width: 1024px) {
             .slide { padding: 3rem; }
@@ -569,19 +591,55 @@
         </div>
         <!-- PAGE 8 -->
         
-<!-- PAGE 8 -->
-<div class="slide slide--standard-list" data-index="7">
+<div class="slide slide--paper-intro" data-index="5">
     <div class="content-wrapper animate-up">
-        <h2>Why I’m Applying to Dr. Zissis Poulos's Group</h2>
+        <h2>Deep Dive: Network Dynamics</h2>
+        <p style="color: var(--text-light);">Analysis of: <i>"Networks of conforming or nonconforming individuals..."</i></p>
+        
+        <div class="concept-grid delay-1 animate-up">
+            <div class="concept-card">
+                <div class="proof-tag">Coordinating</div>
+                <h3>Social Conformance</h3>
+                <p>Modeling the spread of norms and innovations. Decisions driven by the <b>"Mirror Effect."</b></p>
+            </div>
+            <div class="concept-card" style="border-top-color: #475569;">
+                <div class="proof-tag" style="background: #475569;">Anticoordinating</div>
+                <h3>Strategic Dispersion</h3>
+                <p>Modeling congestion and division of labor. Decisions driven by <b>Resource Competition.</b></p>
+            </div>
+        </div>
+        <p class="delay-2 animate-up" style="margin-top: 2rem; font-size: 1.1rem;">
+            <b>The Challenge:</b> Does a network of heterogeneous agents ever stop "flipping" their choices?
+        </p>
+    </div>
+</div>
+        <div class="slide slide--math" data-index="6">
+    <div class="content-wrapper animate-up">
+        <h2 style="color: white;">The Best-Response Math</h2>
+        
+        <div class="math-box delay-1 animate-up">
+            <p>1. The Linear Threshold Strategy</p>
+            <div class="formula-text">n<sub>A</sub> > &tau;<sub>i</sub> &middot; deg<sub>i</sub></div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">Where &tau; is the normalized tipping point derived from the payoff matrix.</p>
+        </div>
+
+        <div class="math-box delay-2 animate-up">
+            <p>2. The Lyapunov Potential (&Phi;)</p>
+            <div class="formula-text">&Delta;&Phi; < 0</div>
+            <p style="font-size: 0.9rem; color: #94a3b8;">Proving that every switch reduces global "energy," guaranteeing convergence to a Nash Equilibrium.</p>
+        </div>
+    </div>
+</div>
+        <div class="slide" data-index="8">
+    <div class="content-wrapper animate-up">
+        <h2>Connecting the Dots</h2>
         <ul class="bullet-list delay-1 animate-up">
-            <li>Strong interest in decision-making systems that combine quantitative modeling with modern machine learning</li>
-            <li>Motivated by Dr. Zissis Poulos’s work on deep hedging, where reinforcement learning is used to optimize real-world financial decisions under uncertainty and transaction costs</li>
-            <li>My background in agentic AI and end-to-end ML system deployment aligns well with learning optimal hedging policies rather than relying on fixed analytical formulas</li>
-            <li>Eager to extend this work by integrating additional data sources—such as textual and macroeconomic signals—into adaptive, robust risk management and hedging systems</li>
+            <li><strong>Simulation Expertise:</strong> I can build the high-performance backends required to simulate these 6|E| transitions on massive scale graphs.</li>
+            <li><strong>Agentic Systems:</strong> My work in LLM agents aligns with the <i>"Best-Response"</i> logic—treating AI agents as strategic players in a network.</li>
+            <li><strong>Goal:</strong> I want to apply my software engineering rigor to prove new stability conditions in evolutionary game theory.</li>
         </ul>
     </div>
 </div>
-
 
 
 
@@ -609,7 +667,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+        const totalSlides = document.querySelectorAll('.slide').length;
         let currentSlide = 0;
 
         const btnPrev = document.getElementById('btnPrev');
@@ -648,6 +706,7 @@
 
 </body>
 </html>
+
 
 
 
