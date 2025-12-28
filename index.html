@@ -764,161 +764,174 @@
             </div>
         </div>
         
-        <!-- PAGE 6 -->
-        <div class="slide slide--timeline" data-index="5">
-            <div class="content-wrapper animate-up">
-                <h2>Step 4: Deep Dive into Training Machine Learning Models</h2>
-                <p class="delay-1 animate-up" style="font-size: 1.2rem; margin-bottom: 2rem;">Goal: Developing reliable ML models through preprocessing, training, and hyperparameter optimization to achieve high performance and generalization
-</p>
-                
-                <div class="timeline-container delay-2 animate-up">
-                    <div class="timeline-node">
-                        <div class="node-icon">1</div>
-                        <h4>Data Preprocessing</h4>
-                         <ul>
-                           <li>Handling missing data</li> 
-        <li>Balancing datasets to manage class imbalance</li>
-                <li>Feature normalization and scaling</li>
-                <li>Feature selection to improve model performance</li>
-        
-                        </ul>
-                    </div>
-                    <div class="timeline-node delay-1 animate-up">
-                         <div class="node-icon">2</div>
-                        <h4>Models Trained</h4>
-                         <ul>
-        
-        <li>Decision Tree</li>
-                <li>Random Forest</li>
-                <li>XGBoost</li>
-                <li>SVM</li>
-                <li>MLP (Multi-layer Perceptron)</li>
-                <li>Goal: Find the best performing model for the dataset</li>
-                            
-                        </ul>
-                    </div>
-                     <div class="timeline-node delay-2 animate-up">
-                         <div class="node-icon">3</div>
-                       <h4>Training & Optimization</h4>
-                         <ul>
-                                  <li>Hyperparameter tuning using Optuna and Grid Search</li>
-                <li>Overfitting prevention: Dropout, Early Stopping, monitoring training & validation error</li>
-                <li>Cross-validation (K-Fold) to ensure generalization</li>
-        
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- PAGE 8 -->
-<div class="content-wrapper animate-up">
+   <!-- PAGE 7 -->
+<div class="slide slide--ml-deepdive" data-index="6">
+  <div class="content-wrapper animate-up">
+    <h2>Deep Dive: Training Machine Learning Models</h2>
+    <p class="subtitle delay-1 animate-up">
+      From raw data to reliable predictions
+    </p>
+
+    <div class="ml-grid delay-2 animate-up">
+      <div class="ml-card">
+        <h3>Data Preparation</h3>
+        <ul>
+          <li>Missing value handling</li>
+          <li>Class imbalance correction</li>
+          <li>Normalization & scaling</li>
+          <li>Feature selection</li>
+        </ul>
+      </div>
+
+      <div class="ml-card">
+        <h3>Models Evaluated</h3>
+        <ul>
+          <li>Decision Tree</li>
+          <li>Random Forest</li>
+          <li>XGBoost</li>
+          <li>SVM</li>
+          <li>MLP</li>
+        </ul>
+      </div>
+
+      <div class="ml-card highlight">
+        <h3>Optimization</h3>
+        <ul>
+          <li>Optuna & Grid Search</li>
+          <li>K-Fold Cross Validation</li>
+          <li>Early stopping</li>
+          <li>Generalization control</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PAGE 8 -->
+<div class="slide slide--concepts" data-index="7">
+  <div class="content-wrapper animate-up">
     <h2>Key Concepts in Network Dynamics</h2>
-    <ul class="bullet-list">
-        <li><b>Coordinating Agents</b></li>
-        <li><b>Anticoordinating Agents</b></li>
-        <li><b>Binary Decisions</b></li>
-        <li><b>Nash Equilibrium</b></li>
-        <li><b>Threshold</b></li>
-        <li><b>Population Heterogeneity</b></li>
-        <li><b>Payoff</b></li>
-        <li><b>Best-Response Dynamics</b></li>
+
+    <div class="concept-pill-grid delay-1 animate-up">
+      <span>Coordinating Agents</span>
+      <span>Anticoordinating Agents</span>
+      <span>Binary Decisions</span>
+      <span>Nash Equilibrium</span>
+      <span>Thresholds</span>
+      <span>Population Heterogeneity</span>
+      <span>Payoff Structures</span>
+      <span>Best-Response Dynamics</span>
+    </div>
+  </div>
+</div>
+<!-- PAGE 9 -->
+<div class="slide slide--questions" data-index="8">
+  <div class="content-wrapper animate-up">
+    <h2>Problems We Aim to Answer</h2>
+
+    <div class="question-list delay-1 animate-up">
+      <div class="question-item">
+        Will the agents converge to a stable configuration?
+      </div>
+      <div class="question-item">
+        Which distribution of actions emerges at equilibrium?
+      </div>
+      <div class="question-item">
+        How fast does convergence occur?
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PAGE 10 -->
+<div class="slide slide--dynamics" data-index="9">
+  <div class="content-wrapper animate-up grid-2">
+    <div>
+      <h2>Best-Response Dynamics</h2>
+      <p class="delay-1 animate-up">
+        How agents update decisions over time
+      </p>
+    </div>
+
+    <div class="delay-2 animate-up">
+      <ul class="bullet-list">
+        <li><b>Asynchronous:</b> Guaranteed convergence</li>
+        <li><b>Partial Synchrony:</b> Almost sure convergence</li>
+        <li><b>Synchronous:</b> Cycles and instability</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- PAGE 11 -->
+<div class="slide slide--math-clean" data-index="10">
+  <div class="content-wrapper animate-up">
+    <h2>Payoff Structure & Threshold Condition</h2>
+
+    <div class="math-panel delay-1 animate-up">
+      <div class="formula">
+        \( a_i n_A + b_i (d_i - n_A) > c_i n_A + d_i (d_i - n_A) \)
+      </div>
+
+      <div class="formula">
+        \( n_A > \tau_i d_i \quad , \quad \tau_i = \frac{d_i - b_i}{a_i - c_i + d_i - b_i} \)
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PAGE 12 -->
+<div class="slide slide--lyapunov-clean" data-index="11">
+  <div class="content-wrapper animate-up">
+    <h2>Lyapunov Potential Function</h2>
+
+    <div class="lyapunov-grid delay-1 animate-up">
+      <div class="lyap-card">
+        <h3>Anticoordinating Agents</h3>
+        <div class="formula">
+          \( \Phi_i = n_A - \hat{n}_A \)
+        </div>
+      </div>
+
+      <div class="lyap-card">
+        <h3>Coordinating Agents</h3>
+        <div class="formula">
+          \( \Phi_i = \hat{n}_A - n_A \)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PAGE 13 -->
+<div class="slide slide--threshold-clean" data-index="12">
+  <div class="content-wrapper animate-up">
+    <h2>Threshold Normalization</h2>
+
+    <ul class="bullet-list delay-1 animate-up">
+      <li>Add fixed neighbors to normalize thresholds</li>
+      <li>Convert heterogeneous agents to τ = 1/2</li>
     </ul>
-</div>
 
-
-        <div class="slide slide--problems" data-index="9">
-    <div class="content-wrapper animate-up">
-        <h2>Problems We Want to Solve</h2>
-        <ul class="bullet-list delay-1 animate-up" style="font-size: 1.2rem;">
-            <li><b>(i)</b> Will the agents eventually settle on a fixed state/action?</li>
-            <li><b>(ii)</b> Which distribution of actions will the network converge to?</li>
-            <li><b>(iii)</b> How long will it take for the network to converge?</li>
-        </ul>
+    <div class="formula delay-2 animate-up">
+      \( m_i \approx |(1 - 2\tau_i) d_i| \)
     </div>
+  </div>
 </div>
-<div class="slide slide--synchrony" data-index="10">
-    <div class="content-wrapper animate-up">
-        <h2>Best-Response Dynamics: Synchrony, Asynchrony, and Partial Synchrony</h2>
-        <p class="delay-1 animate-up" style="font-size: 1.2rem;">
-            Synchronous updates can lead to cycles, making them unsuitable for convergence. On the other hand:
-        </p>
-        <ul class="bullet-list delay-2 animate-up" style="font-size: 1.2rem;">
-            <li><b>Asynchronous Updates:</b> Guarantee convergence to equilibrium, one agent updates at a time.</li>
-            <li><b>Partial Synchrony:</b> Updates occur in small groups, leading to almost sure convergence in most cases.</li>
-            <li><b>Rejection of Synchronous Updates:</b> They create cycles, preventing convergence.</li>
-        </ul>
+<!-- PAGE 14 -->
+<div class="slide slide--conclusion-research" data-index="13">
+  <div class="content-wrapper animate-up">
+    <h2>Convergence & Guarantees</h2>
+
+    <div class="conclusion-cards delay-1 animate-up">
+      <div class="conclusion-card">
+        <h3>Bounded Switches</h3>
+        <p>At most \( 6|E| \) total updates</p>
+      </div>
+
+      <div class="conclusion-card">
+        <h3>Fast Convergence</h3>
+        <p>Linear time in network size</p>
+      </div>
     </div>
+  </div>
 </div>
 
-
-        <div class="slide slide--payoff-matrix" data-index="11">
-    <div class="content-wrapper animate-up">
-        <h2>Payoff Matrix and Threshold Equation</h2>
-        <div class="math-box delay-1 animate-up">
-            <p>Payoff Matrix:</p>
-            <div class="formula-text">\( a_i n_A + b_i (deg_i - n_A) > c_i n_A + d_i (deg_i - n_A) \)</div>
-            <p>Grouping the terms gives the fundamental threshold equation:</p>
-            <div class="formula-text">\( n_A (a_i - c_i + d_i - b_i) > deg_i (d_i - b_i) \)</div>
-            <p>The fundamental threshold condition is:</p>
-            <div class="formula-text">\( n_A > \tau_i \cdot deg_i \) where \( \tau_i = \frac{\delta_i}{\gamma_i} \)</div>
-        </div>
-    </div>
-</div>
-
-        <div class="slide slide--lyapunov" data-index="12">
-    <div class="content-wrapper animate-up">
-        <h2>Lyapunov Potential Function</h2>
-        <div class="math-box delay-1 animate-up">
-            <p>For Anticoordinating Agents (The Rebels):</p>
-            <div class="formula-text">\( \Phi_i(k) = \left\{ \begin{array}{ll} n_A(k) - \hat{n}_A & \text{if } x_i(k) = A \\ \hat{n}_A + 1 - n_A(k) & \text{if } x_i(k) = B \end{array} \right. \)</div>
-            <p>Where \( n_A(k) \) is the current number of A-neighbors, and \( \hat{n}_A \) is the maximum A-neighbors an agent can tolerate before switching.</p>
-        </div>
-        <div class="math-box delay-2 animate-up">
-            <p>For Coordinating Agents (The Followers):</p>
-            <div class="formula-text">\( \Phi_i(k) = \left\{ \begin{array}{ll} \hat{n}_A - n_A(k) & \text{if } x_i(k) = A \\ n_A(k) - (\hat{n}_A - 1) & \text{if } x_i(k) = B \end{array} \right. \)</div>
-            <p>Where \( \hat{n}_A \) is the minimum number of A-neighbors required to keep playing A.</p>
-        </div>
-    </div>
-</div>
-
-        <div class="slide slide--threshold-transformation" data-index="13">
-    <div class="content-wrapper animate-up">
-        <h2>Threshold Transformation: Dummy Nodes</h2>
-        <p class="delay-1 animate-up" style="font-size: 1.2rem;">
-            Agents with varying thresholds are transformed to a uniform threshold of \( \tau = 1/2 \) by adding "dummy nodes."
-        </p>
-        <ul class="bullet-list delay-2 animate-up" style="font-size: 1.2rem;">
-            <li><b>Case \( \tau_i < 1/2 \):</b> Add fixed B-neighbors to raise the threshold.</li>
-            <li><b>Case \( \tau_i > 1/2 \):</b> Add fixed A-neighbors to lower the threshold.</li>
-        </ul>
-        <div class="math-box delay-3 animate-up">
-            <p>The Magic Formula for the number of dummy blocks:</p>
-            <div class="formula-text">\( m_i \approx |(1 - 2\tau_i) \cdot deg_i| \)</div>
-        </div>
-    </div>
-</div>
-
-        <div class="slide slide--convergence" data-index="14">
-    <div class="content-wrapper animate-up">
-        <h2>Total Switches & Reaching Equilibrium</h2>
-        <div class="timeline-container delay-1 animate-up">
-            <div class="timeline-node">
-                <div class="node-icon">1</div>
-                <h4>Upper Bound on Switches</h4>
-                <ul>
-                    <li>The total number of strategy switches is limited to \( 6 |E| \), where \( |E| \) is the number of edges in the network.</li>
-                </ul>
-            </div>
-            <div class="timeline-node delay-2 animate-up">
-                <div class="node-icon">2</div>
-                <h4>Convergence Time</h4>
-                <ul>
-                    <li>The system converges in linear time relative to the size of the network.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
 
         <!-- PAGE 10 -->
         <div class="slide slide--title slide--closing" data-index="9">
@@ -983,6 +996,7 @@
 
 </body>
 </html>
+
 
 
 
