@@ -1240,39 +1240,32 @@
   </div>
 </div>
 <!-- PAGE 13 -->
-<div class="slide slide--threshold-clean" data-index="12">
+<div class="slide slide--lyapunov-refined" data-index="12">
   <div class="content-wrapper animate-up">
-    <h2>Threshold Normalization & "V-Block" Construction</h2>
+    <h2 style="margin-bottom: 20px;">Lyapunov Potential Function</h2>
 
-    <div class="logic-grid delay-1 animate-up">
-      <div class="logic-card">
-        <h3>The Transformation</h3>
-        <p>Standardize any agent threshold to \( \tau = 1/2 \) by adding "dummy nodes".</p>
-        <ul class="bullet-list">
-          <li><strong>Case \( \tau_i < 1/2 \):</strong> Add fixed <strong>B-neighbors</strong> to raise the threshold.</li>
-          <li><strong>Case \( \tau_i > 1/2 \):</strong> Add fixed <strong>A-neighbors</strong> to lower the effort needed to switch.</li>
-        </ul>
+    <div style="display: flex; gap: 20px; justify-content: center; align-items: stretch; margin-bottom: 30px;">
+      
+      <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border-left: 4px solid #4db8ff;">
+        <h3 style="font-size: 1.1rem; color: #4db8ff; margin-bottom: 15px;">Anticoordinating (The Rebels)</h3>
+        <div style="font-size: 0.9rem;">
+          \( \Phi_i(k) = \begin{cases} n_A(k) - \hat{n}_A & \text{if } x_i(k) = A \\ \hat{n}_A + 1 - n_A(k) & \text{if } x_i(k) = B \end{cases} \)
+        </div>
       </div>
 
-      <div class="formula-card">
-        <div class="formula">
-          \( m_i \approx |(1 - 2\tau_i) deg_i| \)
+      <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border-left: 4px solid #00f2fe;">
+        <h3 style="font-size: 1.1rem; color: #00f2fe; margin-bottom: 15px;">Coordinating (The Followers)</h3>
+        <div style="font-size: 0.9rem;">
+          \( \Phi_i(k) = \begin{cases} \check{n}_A - n_A(k) & \text{if } x_i(k) = A \\ n_A(k) - (\check{n}_A - 1) & \text{if } x_i(k) = B \end{cases} \)
         </div>
       </div>
     </div>
 
-    <div class="definitions-panel delay-2 animate-up">
-      <h3>Key Variables</h3>
-      <div class="def-grid">
-        <div class="def-item">
-          <strong>\( n_A(k) \):</strong> Current number of A-neighbors.
-        </div>
-        <div class="def-item">
-          <strong>\( \hat{n}_A \):</strong> Maximum A-neighbors tolerated before switching to B (tipping point).
-        </div>
-        <div class="def-item">
-          <strong>\( \check{n}_A \):</strong> Minimum A-neighbors needed to keep playing A.
-        </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.1); pt: 20px; font-size: 0.85rem; color: #ccc;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+        <div><strong>\( n_A(k) \):</strong> Current A-neighbors</div>
+        <div><strong>\( \hat{n}_A \):</strong> Max A-neighbors tolerated (tipping point)</div>
+        <div><strong>\( \check{n}_A \):</strong> Min A-neighbors needed to play A</div>
       </div>
     </div>
   </div>
@@ -1361,6 +1354,7 @@
 
 </body>
 </html>
+
 
 
 
