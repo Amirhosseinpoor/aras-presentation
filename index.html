@@ -375,6 +375,223 @@
     background: #1e293b; padding: 2rem; border-radius: 15px;
     border: 1px solid #334155; margin-bottom: 2rem;
 }
+        /* Unique style for Problems We Want to Solve slide */
+.slide--problems {
+    background: #e2e8f0;
+    padding: 6rem 4rem;
+}
+
+.slide--problems h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+.slide--problems .bullet-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.slide--problems .bullet-list li {
+    font-size: 1.3rem;
+    color: var(--secondary);
+    font-weight: 500;
+}
+/* Unique style for Best-Response Dynamics slide */
+.slide--synchrony {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    padding: 6rem 4rem;
+}
+
+.slide--synchrony h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.slide--synchrony ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.slide--synchrony li {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.slide--synchrony li::before {
+    content: "→";
+    color: var(--accent);
+    position: absolute;
+    left: -2rem;
+    top: 0;
+}
+/* Unique style for Payoff Matrix and Threshold Equation slide */
+.slide--payoff-matrix {
+    background: #1e293b;
+    color: white;
+    padding: 6rem 4rem;
+}
+
+.slide--payoff-matrix h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+.math-box {
+    background: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.formula-text {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.6rem;
+    color: #fbbf24;
+    text-align: center;
+    margin: 1rem 0;
+}
+/* Unique style for Lyapunov Potential Function slide */
+.slide--lyapunov {
+    background: #0f172a;
+    color: white;
+    padding: 6rem 4rem;
+}
+
+.slide--lyapunov h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+.math-box {
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.formula-text {
+    font-family: 'Fira Code', monospace;
+    color: #fbbf24;
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+/* Unique style for Threshold Transformation slide */
+.slide--threshold-transformation {
+    background: #3b82f6;
+    color: white;
+    padding: 6rem 4rem;
+}
+
+.slide--threshold-transformation h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.slide--threshold-transformation ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 1.3rem;
+}
+
+.slide--threshold-transformation li {
+    margin-bottom: 1.5rem;
+    position: relative;
+    font-weight: 500;
+}
+
+.slide--threshold-transformation li::before {
+    content: "→";
+    color: var(--accent);
+    position: absolute;
+    left: -2rem;
+    top: 0;
+}
+
+.math-box {
+    background: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.formula-text {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.6rem;
+    color: #fbbf24;
+    text-align: center;
+    margin: 1rem 0;
+}
+/* Unique style for Total Switches & Reaching Equilibrium slide */
+.slide--convergence {
+    background: #1e293b;
+    color: white;
+    padding: 6rem 4rem;
+}
+
+.slide--convergence h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+.timeline-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.timeline-node {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    width: 45%;
+    color: var(--text-main);
+}
+
+.timeline-node h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.timeline-node ul {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.timeline-node .node-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .formula-text { 
     font-family: 'Fira Code', monospace; color: #fbbf24; 
     font-size: 1.6rem; text-align: center; margin: 1rem 0;
@@ -594,21 +811,20 @@
             </div>
         </div>
         <!-- PAGE 8 -->
-<div class="slide slide--key-concepts" data-index="8">
-    <div class="content-wrapper animate-up">
-        <h2>Key Concepts in Network Dynamics</h2>
-        <ul class="bullet-list delay-1 animate-up">
-            <li><b>Coordinating Agents:</b> Agents that prefer to match the majority of their neighbors' choices.</li>
-            <li><b>Anticoordinating Agents:</b> Agents that prefer to do the opposite of the majority of their neighbors' choices.</li>
-            <li><b>Binary Decisions:</b> Each agent makes a choice between two possible actions (A or B).</li>
-            <li><b>Nash Equilibrium:</b> A state where no agent wants to change their action because it gives them the best payoff given others' actions.</li>
-            <li><b>Threshold:</b> The tipping point for an agent to switch between actions A and B based on the number of neighbors.</li>
-            <li><b>Population Heterogeneity:</b> Variation in agents' thresholds and behavior.</li>
-            <li><b>Payoff:</b> The total benefit an agent receives from their current action and the actions of their neighbors.</li>
-            <li><b>Best-Response Dynamics:</b> Each agent chooses the action that maximizes their payoff based on the actions of their neighbors.</li>
-        </ul>
-    </div>
+<div class="content-wrapper animate-up">
+    <h2>Key Concepts in Network Dynamics</h2>
+    <ul class="bullet-list">
+        <li><b>Coordinating Agents</b></li>
+        <li><b>Anticoordinating Agents</b></li>
+        <li><b>Binary Decisions</b></li>
+        <li><b>Nash Equilibrium</b></li>
+        <li><b>Threshold</b></li>
+        <li><b>Population Heterogeneity</b></li>
+        <li><b>Payoff</b></li>
+        <li><b>Best-Response Dynamics</b></li>
+    </ul>
 </div>
+
 
         <div class="slide slide--problems" data-index="9">
     <div class="content-wrapper animate-up">
@@ -767,6 +983,7 @@
 
 </body>
 </html>
+
 
 
 
