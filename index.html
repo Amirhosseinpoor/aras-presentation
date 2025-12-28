@@ -1165,11 +1165,19 @@
 
     <div class="math-panel delay-1 animate-up">
       <div class="formula">
-        \( a_i n_A + b_i (d_i - n_A) > c_i n_A + d_i (d_i - n_A) \)
+        \( \text{Payoff Matrix: } \begin{pmatrix} a_i & b_i \\ c_i & d_i \end{pmatrix} \)
       </div>
 
       <div class="formula">
-        \( n_A > \tau_i d_i \quad , \quad \tau_i = \frac{d_i - b_i}{a_i - c_i + d_i - b_i} \)
+        \( a_i n_A + b_i(deg_i - n_A) > c_i n_A + d_i(deg_i - n_A) \)
+      </div>
+
+      <div class="formula">
+        \( n_A (a_i - c_i + d_i - b_i) > deg_i (d_i - b_i) \)
+      </div>
+
+      <div class="formula">
+        \( n_A > \tau_i \cdot deg_i \quad \text{where} \quad \tau_i = \frac{\gamma_i}{\delta_i} = \frac{d_i - b_i}{a_i - c_i + d_i - b_i} \)
       </div>
     </div>
   </div>
@@ -1183,31 +1191,62 @@
       <div class="lyap-card">
         <h3>Anticoordinating Agents</h3>
         <div class="formula">
-          \( \Phi_i = n_A - \hat{n}_A \)
+          \( \Phi_i(k) = \begin{cases} n_A(k) - \hat{n}_A & \text{if } x_i(k) = A \\ \hat{n}_A + 1 - n_A(k) & \text{if } x_i(k) = B \end{cases} \)
         </div>
       </div>
 
       <div class="lyap-card">
         <h3>Coordinating Agents</h3>
         <div class="formula">
-          \( \Phi_i = \hat{n}_A - n_A \)
+          \( \Phi_i(k) = \begin{cases} \check{n}_A - n_A(k) & \text{if } x_i(k) = A \\ n_A(k) - (\check{n}_A - 1) & \text{if } x_i(k) = B \end{cases} \)
         </div>
       </div>
+    </div>
+
+    <div class="definitions-panel delay-2 animate-up">
+      <ul>
+        <li><strong>\( n_A(k) \):</strong> Current number of A-neighbors.</li>
+        <li><strong>\( \hat{n}_A \):</strong> The maximum number of A-neighbors an agent can tolerate before switching to B (tipping point).</li>
+        <li><strong>\( \check{n}_A \):</strong> The minimum A-neighbors needed to keep playing A.</li>
+      </ul>
     </div>
   </div>
 </div>
 <!-- PAGE 13 -->
 <div class="slide slide--threshold-clean" data-index="12">
   <div class="content-wrapper animate-up">
-    <h2>Threshold Normalization</h2>
+    <h2>Threshold Normalization & "V-Block" Construction</h2>
 
-    <ul class="bullet-list delay-1 animate-up">
-      <li>Add fixed neighbors to normalize thresholds</li>
-      <li>Convert heterogeneous agents to τ = 1/2</li>
-    </ul>
+    <div class="logic-grid delay-1 animate-up">
+      <div class="logic-card">
+        <h3>The Transformation</h3>
+        <p>Standardize any agent threshold to \( \tau = 1/2 \) by adding "dummy nodes".</p>
+        <ul class="bullet-list">
+          <li><strong>Case \( \tau_i < 1/2 \):</strong> Add fixed <strong>B-neighbors</strong> to raise the threshold.</li>
+          <li><strong>Case \( \tau_i > 1/2 \):</strong> Add fixed <strong>A-neighbors</strong> to lower the effort needed to switch.</li>
+        </ul>
+      </div>
 
-    <div class="formula delay-2 animate-up">
-      \( m_i \approx |(1 - 2\tau_i) d_i| \)
+      <div class="formula-card">
+        <div class="formula">
+          \( m_i \approx |(1 - 2\tau_i) deg_i| \)
+        </div>
+      </div>
+    </div>
+
+    <div class="definitions-panel delay-2 animate-up">
+      <h3>Key Variables</h3>
+      <div class="def-grid">
+        <div class="def-item">
+          <strong>\( n_A(k) \):</strong> Current number of A-neighbors.
+        </div>
+        <div class="def-item">
+          <strong>\( \hat{n}_A \):</strong> Maximum A-neighbors tolerated before switching to B (tipping point).
+        </div>
+        <div class="def-item">
+          <strong>\( \check{n}_A \):</strong> Minimum A-neighbors needed to keep playing A.
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1295,6 +1334,7 @@
 
 </body>
 </html>
+
 
 
 
