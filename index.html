@@ -1062,6 +1062,7 @@
         </div>
         
    <!-- PAGE 7 -->
+<!-- PAGE 7 -->
 <div class="slide slide--ml-deepdive" data-index="6">
   <div class="content-wrapper animate-up">
     <h2>Deep Dive: Training Machine Learning Models</h2>
@@ -1158,146 +1159,57 @@
   </div>
 </div>
 <!-- PAGE 11 -->
-<div class="content-wrapper">
+<div class="slide slide--math-clean" data-index="10">
+  <div class="content-wrapper animate-up">
+    <h2>Payoff Structure & Threshold Condition</h2>
 
-  <h2 class="slide-title">Payoff Structure and Threshold Logic</h2>
+    <div class="math-panel delay-1 animate-up">
+      <div class="formula">
+        \( a_i n_A + b_i (d_i - n_A) > c_i n_A + d_i (d_i - n_A) \)
+      </div>
 
-  <p class="slide-text">
-    Each agent <b>i</b> is defined by the following payoff matrix:
-  </p>
-
-  <div class="formula-block">
-    \[
-    \begin{pmatrix}
-    a_i & b_i \\
-    c_i & d_i
-    \end{pmatrix}
-    \]
+      <div class="formula">
+        \( n_A > \tau_i d_i \quad , \quad \tau_i = \frac{d_i - b_i}{a_i - c_i + d_i - b_i} \)
+      </div>
+    </div>
   </div>
-
-  <p class="slide-text">
-    Let \( n_A \) be the number of neighbors playing strategy A and
-    \( n_B = \deg_i - n_A \).
-  </p>
-
-  <div class="formula-block">
-    <p><b>Total payoff for choosing A:</b></p>
-    \[
-    a_i n_A + b_i n_B
-    \]
-  </div>
-
-  <div class="formula-block">
-    <p><b>Total payoff for choosing B:</b></p>
-    \[
-    c_i n_A + d_i n_B
-    \]
-  </div>
-
-  <p class="slide-text emphasis">
-    Comparing these payoffs induces a threshold-based decision rule
-    that depends only on the number of A-neighbors.
-  </p>
-
 </div>
-
 <!-- PAGE 12 -->
-<div class="content-wrapper">
+<div class="slide slide--lyapunov-clean" data-index="11">
+  <div class="content-wrapper animate-up">
+    <h2>Lyapunov Potential Function</h2>
 
-  <h2 class="slide-title">Agent Types and Potential Functions</h2>
-
-  <div class="two-column">
-
-    <!-- Anticoordinating Agents -->
-    <div class="column card">
-
-      <h3 style="color:#38bdf8;">Anticoordinating Agents (The Rebels)</h3>
-
-      <div class="formula-block">
-        \[
-        \Phi_i(k) =
-        \begin{cases}
-        n_A(k) - \hat{n}_A & \text{if } x_i(k) = A \\
-        \hat{n}_A + 1 - n_A(k) & \text{if } x_i(k) = B
-        \end{cases}
-        \]
+    <div class="lyapunov-grid delay-1 animate-up">
+      <div class="lyap-card">
+        <h3>Anticoordinating Agents</h3>
+        <div class="formula">
+          \( \Phi_i = n_A - \hat{n}_A \)
+        </div>
       </div>
 
-      <p class="slide-text">
-        \( n_A(k) \): current number of A-neighbors.
-      </p>
-
-      <p class="slide-text">
-        \( \hat{n}_A \): maximum number of A-neighbors tolerated before switching
-        (tipping point).
-      </p>
-
-    </div>
-
-    <!-- Coordinating Agents -->
-    <div class="column card">
-
-      <h3 style="color:#22d3ee;">Coordinating Agents (The Followers)</h3>
-
-      <div class="formula-block">
-        \[
-        \Phi_i(k) =
-        \begin{cases}
-        \tilde{n}_A - n_A(k) & \text{if } x_i(k) = A \\
-        n_A(k) - (\tilde{n}_A - 1) & \text{if } x_i(k) = B
-        \end{cases}
-        \]
+      <div class="lyap-card">
+        <h3>Coordinating Agents</h3>
+        <div class="formula">
+          \( \Phi_i = \hat{n}_A - n_A \)
+        </div>
       </div>
-
-      <p class="slide-text">
-        \( \tilde{n}_A \): minimum number of A-neighbors required
-        to continue playing A.
-      </p>
-
     </div>
-
   </div>
-
 </div>
-
 <!-- PAGE 13 -->
-<div class="content-wrapper">
+<div class="slide slide--threshold-clean" data-index="12">
+  <div class="content-wrapper animate-up">
+    <h2>Threshold Normalization</h2>
 
-  <h2 class="slide-title">Threshold Normalization via V-Blocks</h2>
+    <ul class="bullet-list delay-1 animate-up">
+      <li>Add fixed neighbors to normalize thresholds</li>
+      <li>Convert heterogeneous agents to τ = 1/2</li>
+    </ul>
 
-  <p class="slide-text">
-    Agents with arbitrary thresholds can be transformed into
-    a standardized agent with threshold
-    \( \tau = \frac{1}{2} \)
-    by attaching <b>V-block structures</b>.
-  </p>
-
-  <ul class="bullet-list">
-
-    <li>
-      A <b>V-block</b> is a small set of fixed dummy nodes
-      attached to an agent to modify its effective threshold.
-    </li>
-
-    <li>
-      <b>Case \( \tau_i < \frac{1}{2} \):</b>
-      The agent switches too easily.
-      Fixed <b>B-neighbors</b> are added to raise the effective threshold.
-    </li>
-
-    <li>
-      <b>Case \( \tau_i > \frac{1}{2} \):</b>
-      The agent is too stubborn.
-      Fixed <b>A-neighbors</b> are added to lower the effective threshold.
-    </li>
-
-  </ul>
-
-  <p class="slide-text emphasis">
-    This construction allows heterogeneous agents to be analyzed
-    within a unified dynamical framework.
-  </p>
-
+    <div class="formula delay-2 animate-up">
+      \( m_i \approx |(1 - 2\tau_i) d_i| \)
+    </div>
+  </div>
 </div>
 <!-- PAGE 14 -->
 <div class="slide slide--conclusion-research" data-index="13">
@@ -1317,6 +1229,7 @@
     </div>
   </div>
 </div>
+
 
 
         <!-- PAGE 10 -->
@@ -1382,6 +1295,7 @@
 
 </body>
 </html>
+
 
 
 
