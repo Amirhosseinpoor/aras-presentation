@@ -594,69 +594,98 @@
             </div>
         </div>
         <!-- PAGE 8 -->
-<div class="slide slide--paper-intro" data-index="5">
+<div class="slide slide--key-concepts" data-index="8">
     <div class="content-wrapper animate-up">
-        <h2>Deep Dive: Network Dynamics</h2>
-        <p style="color: var(--text-light);">Analysis of: <i>"Networks of conforming or nonconforming individuals..."</i></p>
+        <h2>Key Concepts in Network Dynamics</h2>
+        <ul class="bullet-list delay-1 animate-up">
+            <li><b>Coordinating Agents:</b> Agents that prefer to match the majority of their neighbors' choices.</li>
+            <li><b>Anticoordinating Agents:</b> Agents that prefer to do the opposite of the majority of their neighbors' choices.</li>
+            <li><b>Binary Decisions:</b> Each agent makes a choice between two possible actions (A or B).</li>
+            <li><b>Nash Equilibrium:</b> A state where no agent wants to change their action because it gives them the best payoff given others' actions.</li>
+            <li><b>Threshold:</b> The tipping point for an agent to switch between actions A and B based on the number of neighbors.</li>
+            <li><b>Population Heterogeneity:</b> Variation in agents' thresholds and behavior.</li>
+            <li><b>Payoff:</b> The total benefit an agent receives from their current action and the actions of their neighbors.</li>
+            <li><b>Best-Response Dynamics:</b> Each agent chooses the action that maximizes their payoff based on the actions of their neighbors.</li>
+        </ul>
+    </div>
+</div>
 
-        <div class="concept-grid delay-1 animate-up">
-            <div class="concept-card">
-                <div class="proof-tag">Coordinating</div>
-                <h3>Social Conformance</h3>
-                <p>Modeling the spread of norms and innovations. Decisions driven by the <b>"Mirror Effect."</b></p>
-            </div>
-            <div class="concept-card" style="border-top-color: #475569;">
-                <div class="proof-tag" style="background: #475569;">Anticoordinating</div>
-                <h3>Strategic Dispersion</h3>
-                <p>Modeling congestion and division of labor. Decisions driven by <b>Resource Competition.</b></p>
-            </div>
-        </div>
-        <p class="delay-2 animate-up" style="margin-top: 2rem; font-size: 1.1rem;">
-            <b>The Challenge:</b> Does a network of heterogeneous agents ever stop "flipping" their choices?
+        <div class="slide slide--problems" data-index="9">
+    <div class="content-wrapper animate-up">
+        <h2>Problems We Want to Solve</h2>
+        <ul class="bullet-list delay-1 animate-up" style="font-size: 1.2rem;">
+            <li><b>(i)</b> Will the agents eventually settle on a fixed state/action?</li>
+            <li><b>(ii)</b> Which distribution of actions will the network converge to?</li>
+            <li><b>(iii)</b> How long will it take for the network to converge?</li>
+        </ul>
+    </div>
+</div>
+<div class="slide slide--synchrony" data-index="10">
+    <div class="content-wrapper animate-up">
+        <h2>Best-Response Dynamics: Synchrony, Asynchrony, and Partial Synchrony</h2>
+        <p class="delay-1 animate-up" style="font-size: 1.2rem;">
+            Synchronous updates can lead to cycles, making them unsuitable for convergence. On the other hand:
         </p>
+        <ul class="bullet-list delay-2 animate-up" style="font-size: 1.2rem;">
+            <li><b>Asynchronous Updates:</b> Guarantee convergence to equilibrium, one agent updates at a time.</li>
+            <li><b>Partial Synchrony:</b> Updates occur in small groups, leading to almost sure convergence in most cases.</li>
+            <li><b>Rejection of Synchronous Updates:</b> They create cycles, preventing convergence.</li>
+        </ul>
     </div>
 </div>
-<div class="slide slide--math" data-index="6">
-    <div class="content-wrapper animate-up">
-        <h2 style="color: white;">The Best-Response Math</h2>
 
+
+        <div class="slide slide--payoff-matrix" data-index="11">
+    <div class="content-wrapper animate-up">
+        <h2>Payoff Matrix and Threshold Equation</h2>
         <div class="math-box delay-1 animate-up">
-            <p>1. The **Linear Threshold Strategy**</p>
-            <div class="formula-text">\( n_A > \tau_i \cdot \text{deg}_i \)</div>
-            <p style="font-size: 0.9rem; color: #94a3b8;">Where \( \tau_i \) is the normalized tipping point derived from the payoff matrix. If \( n_A \) exceeds this threshold, the agent will switch to action A.</p>
-        </div>
-
-        <div class="math-box delay-2 animate-up">
-            <p>2. The **Lyapunov Potential** (\( \Phi \))</p>
-            <div class="formula-text">\( \Delta \Phi < 0 \)</div>
-            <p style="font-size: 0.9rem; color: #94a3b8;">The Lyapunov function guarantees that the system reaches equilibrium by continuously decreasing its energy with each agent's switch.</p>
+            <p>Payoff Matrix:</p>
+            <div class="formula-text">\( a_i n_A + b_i (deg_i - n_A) > c_i n_A + d_i (deg_i - n_A) \)</div>
+            <p>Grouping the terms gives the fundamental threshold equation:</p>
+            <div class="formula-text">\( n_A (a_i - c_i + d_i - b_i) > deg_i (d_i - b_i) \)</div>
+            <p>The fundamental threshold condition is:</p>
+            <div class="formula-text">\( n_A > \tau_i \cdot deg_i \) where \( \tau_i = \frac{\delta_i}{\gamma_i} \)</div>
         </div>
     </div>
 </div>
-<div class="slide slide--dark-split" data-index="7">
+
+        <div class="slide slide--lyapunov" data-index="12">
     <div class="content-wrapper animate-up">
-        <h2>Equal Thresholds & Dummy Nodes</h2>
-        <h3>Equalizing Thresholds</h3>
+        <h2>Lyapunov Potential Function</h2>
         <div class="math-box delay-1 animate-up">
-            <p>1. **Standardizing Thresholds**</p>
-            <div class="formula-text">Threshold \( \tau_i = \frac{1}{2} \)</div>
-            <p style="font-size: 0.9rem; color: #94a3b8;">By assigning all agents an equal threshold, we can simplify the system and treat it as if all agents behave similarly.</p>
+            <p>For Anticoordinating Agents (The Rebels):</p>
+            <div class="formula-text">\( \Phi_i(k) = \left\{ \begin{array}{ll} n_A(k) - \hat{n}_A & \text{if } x_i(k) = A \\ \hat{n}_A + 1 - n_A(k) & \text{if } x_i(k) = B \end{array} \right. \)</div>
+            <p>Where \( n_A(k) \) is the current number of A-neighbors, and \( \hat{n}_A \) is the maximum A-neighbors an agent can tolerate before switching.</p>
         </div>
-
-        <h3>Dummy Nodes</h3>
         <div class="math-box delay-2 animate-up">
-            <p>2. **Using Dummy Nodes (V-blocks)**</p>
-            <div class="formula-text">\( \tau_i = \frac{1}{2} \) for all agents, achieved using V-blocks.</div>
-            <p style="font-size: 0.9rem; color: #94a3b8;">The V-blocks simulate the behavior of heterogeneous agents, normalizing them to a uniform threshold for simplicity.</p>
+            <p>For Coordinating Agents (The Followers):</p>
+            <div class="formula-text">\( \Phi_i(k) = \left\{ \begin{array}{ll} \hat{n}_A - n_A(k) & \text{if } x_i(k) = A \\ n_A(k) - (\hat{n}_A - 1) & \text{if } x_i(k) = B \end{array} \right. \)</div>
+            <p>Where \( \hat{n}_A \) is the minimum number of A-neighbors required to keep playing A.</p>
         </div>
     </div>
 </div>
-<div class="slide slide--timeline" data-index="8">
-    <div class="content-wrapper animate-up">
-        <h2>Total Switches & Convergence Time</h2>
-        <p class="delay-1 animate-up" style="font-size: 1.2rem; margin-bottom: 2rem;">Understanding the upper bounds for total switches in the system.</p>
 
-        <div class="timeline-container delay-2 animate-up" style="background-color: #4CAF50; padding: 20px; border-radius: 8px; color: white;">
+        <div class="slide slide--threshold-transformation" data-index="13">
+    <div class="content-wrapper animate-up">
+        <h2>Threshold Transformation: Dummy Nodes</h2>
+        <p class="delay-1 animate-up" style="font-size: 1.2rem;">
+            Agents with varying thresholds are transformed to a uniform threshold of \( \tau = 1/2 \) by adding "dummy nodes."
+        </p>
+        <ul class="bullet-list delay-2 animate-up" style="font-size: 1.2rem;">
+            <li><b>Case \( \tau_i < 1/2 \):</b> Add fixed B-neighbors to raise the threshold.</li>
+            <li><b>Case \( \tau_i > 1/2 \):</b> Add fixed A-neighbors to lower the threshold.</li>
+        </ul>
+        <div class="math-box delay-3 animate-up">
+            <p>The Magic Formula for the number of dummy blocks:</p>
+            <div class="formula-text">\( m_i \approx |(1 - 2\tau_i) \cdot deg_i| \)</div>
+        </div>
+    </div>
+</div>
+
+        <div class="slide slide--convergence" data-index="14">
+    <div class="content-wrapper animate-up">
+        <h2>Total Switches & Reaching Equilibrium</h2>
+        <div class="timeline-container delay-1 animate-up">
             <div class="timeline-node">
                 <div class="node-icon">1</div>
                 <h4>Upper Bound on Switches</h4>
@@ -664,8 +693,7 @@
                     <li>The total number of strategy switches is limited to \( 6 |E| \), where \( |E| \) is the number of edges in the network.</li>
                 </ul>
             </div>
-
-            <div class="timeline-node delay-1 animate-up">
+            <div class="timeline-node delay-2 animate-up">
                 <div class="node-icon">2</div>
                 <h4>Convergence Time</h4>
                 <ul>
@@ -675,8 +703,6 @@
         </div>
     </div>
 </div>
-
-
 
         <!-- PAGE 10 -->
         <div class="slide slide--title slide--closing" data-index="9">
@@ -741,6 +767,7 @@
 
 </body>
 </html>
+
 
 
 
