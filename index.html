@@ -151,7 +151,26 @@
             cursor: pointer;
         }
         .btn-link:hover { background: var(--primary-dark); }
-
+.def-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.def-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+.definitions-panel {
+    margin-top: 2rem;
+}
+.definitions-panel h3 {
+    color: inherit;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
         /* --- INDIVIDUAL SLIDE STYLES --- */
 
         /* SLIDE 1: Title */
@@ -1333,6 +1352,7 @@
 
 </body>
 </html>
+
 
 
 
