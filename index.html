@@ -1186,17 +1186,41 @@
   </div>
 </div>
 <!-- PAGE 12 -->
-<div class="slide slide--lyapunov-clean" data-index="11">
+<div class="slide slide--lyapunov-refined" data-index="12">
   <div class="content-wrapper animate-up">
     <h2>Lyapunov Potential Function</h2>
 
-    <div class="lyapunov-grid delay-1 animate-up">
-      <div class="lyap-card">
-        <h3>Anticoordinating Agents</h3>
-        <div class="formula">
-          \( \Phi_i(k) = \begin{cases} n_A(k) - \hat{n}_A & \text{if } x_i(k) = A \\ \hat{n}_A + 1 - n_A(k) & \text{if } x_i(k) = B \end{cases} \)
+    <div class="lyapunov-container delay-1 animate-up">
+      <div class="lyap-card compact">
+        <span class="card-label">Anticoordinating (Rebels)</span>
+        <div class="formula-block">
+          \( \Phi_i(k) = \begin{cases} 
+            n_A(k) - \hat{n}_A & \text{if } x_i(k) = A \\ 
+            \hat{n}_A + 1 - n_A(k) & \text{if } x_i(k) = B 
+          \end{cases} \)
         </div>
       </div>
+
+      <div class="lyap-card compact">
+        <span class="card-label">Coordinating (Followers)</span>
+        <div class="formula-block">
+          \( \Phi_i(k) = \begin{cases} 
+            \check{n}_A - n_A(k) & \text{if } x_i(k) = A \\ 
+            n_A(k) - (\check{n}_A - 1) & \text{if } x_i(k) = B 
+          \end{cases} \)
+        </div>
+      </div>
+    </div>
+
+    <div class="math-definitions delay-2 animate-up">
+      <div class="def-row">
+        <span><strong>\( n_A(k) \):</strong> Current A-neighbors</span>
+        <span><strong>\( \hat{n}_A \):</strong> Max A-neighbors tolerated (tipping point)</span>
+        <span><strong>\( \check{n}_A \):</strong> Min A-neighbors needed for strategy A</span>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div class="lyap-card">
         <h3>Coordinating Agents</h3>
@@ -1337,6 +1361,7 @@
 
 </body>
 </html>
+
 
 
 
