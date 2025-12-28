@@ -688,7 +688,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const slides = document.querySelectorAll('.slide');
-        const totalSlides = document.querySelectorAll('.slide').length;
+        const totalSlides = slides.length; // Get the total number of slides dynamically
         let currentSlide = 0;
 
         const btnPrev = document.getElementById('btnPrev');
@@ -696,37 +696,45 @@
         const counter = document.getElementById('slideCounter');
         const progressBar = document.getElementById('progressBar');
 
+        // Function to update the slide display
         function updateSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
             slides[index].classList.add('active');
-            counter.textContent = `${index + 1} / ${totalSlides}`;
-            progressBar.style.width = `${((index + 1) / totalSlides) * 100}%`;
+            counter.textContent = `${index + 1} / ${totalSlides}`;  // Update slide counter
+            progressBar.style.width = `${((index + 1) / totalSlides) * 100}%`;  // Update progress bar
         }
 
+        // Go to next slide
         function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
+            currentSlide = (currentSlide + 1) % totalSlides; // Loop to first slide when reaching the last one
             updateSlide(currentSlide);
         }
 
+        // Go to previous slide
         function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // Loop to last slide when going before the first one
             updateSlide(currentSlide);
         }
 
+        // Event listeners for button clicks
         btnNext.addEventListener('click', nextSlide);
         btnPrev.addEventListener('click', prevSlide);
 
+        // Event listener for keyboard arrow keys and spacebar
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide(); // Spacebar or right arrow
+            if (e.key === 'ArrowLeft') prevSlide(); // Left arrow
         });
 
+        // Initialize first slide
         updateSlide(currentSlide);
     });
 </script>
 
+
 </body>
 </html>
+
 
 
 
