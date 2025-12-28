@@ -10,608 +10,401 @@
     <title>My Journey at ARAS | Amir Hosseinpoor</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
-    <style>
-        /* --- 1. RESET & VARIABLES --- */
-        :root {
-            --primary: #2563EB;       /* Professional Blue */
-            --primary-dark: #1e3a8a;
-            --secondary: #1E293B;     /* Dark Slate */
-            --accent: #3B82F6;        /* Lighter Blue */
-            --bg-color: #F8FAFC;      /* Very Light Gray/Blue */
-            --text-main: #334155;     /* Dark Gray for text */
-            --text-light: #64748B;    /* Lighter Gray */
-            --white: #ffffff;
-            --shadow: 0 12px 30px rgba(0,0,0,0.08);
-            --bg-dark: #0f172a;       /* For contrasting slides */
-        }
+<style>
+    /* --- 1. RESET & VARIABLES --- */
+    :root {
+        --primary: #2563EB;       /* Professional Blue */
+        --primary-dark: #1e3a8a;
+        --secondary: #1E293B;     /* Dark Slate */
+        --accent: #3B82F6;        /* Lighter Blue */
+        --bg-color: #F8FAFC;      /* Very Light Gray/Blue */
+        --text-main: #334155;     /* Dark Gray for text */
+        --text-light: #64748B;    /* Lighter Gray */
+        --white: #ffffff;
+        --shadow: 0 12px 30px rgba(0,0,0,0.08);
+        --bg-dark: #0f172a;       /* For contrasting slides */
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #e2e8f0; /* Slightly darker framing background */
-            color: var(--text-main);
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #e2e8f0; /* Slightly darker framing background */
+        color: var(--text-main);
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--secondary);
-        }
+    h1, h2, h3, h4 {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--secondary);
+    }
 
-        /* --- 2. LAYOUT CONTAINER & MAIN ANIMATIONS --- */
+    /* --- 2. LAYOUT CONTAINER & MAIN ANIMATIONS --- */
+    .presentation-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-width: 1400px; /* Wider for modern feel */
+        max-height: 900px;
+        background: var(--bg-color);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    @media (min-width: 1024px) {
         .presentation-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            max-width: 1400px; /* Wider for modern feel */
-            max-height: 900px;
-            background: var(--bg-color);
-            overflow: hidden;
-            box-shadow: var(--shadow);
+            height: 95vh;
+            width: 95vw;
+            border-radius: 24px;
         }
+    }
 
-        @media (min-width: 1024px) {
-            .presentation-container {
-                height: 95vh;
-                width: 95vw;
-                border-radius: 24px;
-            }
-        }
+    /* --- SLIDES STRUCTURE & TRANSITIONS --- */
+    .slide {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        padding: 4rem 6rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1) translateY(20px); 
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-        /* --- SLIDES STRUCTURE & TRANSITIONS --- */
-        .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            padding: 4rem 6rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(1.1) translateY(20px); 
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    .slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1) translateY(0);
+        z-index: 10;
+    }
 
-        .slide.active {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1) translateY(0);
-            z-index: 10;
-        }
+    /* Internal Content Animations (Staggered Fade Up) */
+    .animate-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+    }
 
-        /* Internal Content Animations (Staggered Fade Up) */
-        .animate-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
+    .slide.active .animate-up {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .slide.active .delay-1 { transition-delay: 0.2s; }
+    .slide.active .delay-2 { transition-delay: 0.4s; }
+    .slide.active .delay-3 { transition-delay: 0.6s; }
+    .slide.active .delay-4 { transition-delay: 0.8s; }
 
-        .slide.active .animate-up {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .slide.active .delay-1 { transition-delay: 0.2s; }
-        .slide.active .delay-2 { transition-delay: 0.4s; }
-        .slide.active .delay-3 { transition-delay: 0.6s; }
-        .slide.active .delay-4 { transition-delay: 0.8s; }
+    /* --- UTILITIES & COMPONENTS --- */
+    .content-wrapper {
+        max-width: 1100px;
+        width: 100%;
+        margin: 0 auto;
+    }
 
-        /* --- UTILITIES & COMPONENTS --- */
-        .content-wrapper {
-            max-width: 1100px;
-            width: 100%;
-            margin: 0 auto;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        .img-placeholder {
-            width: 100%;
-            height: 100%;
-            min-height: 300px;
-            background: #cbd5e1;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            font-weight: bold;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        .img-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
 
-        .btn-link {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.8rem 2rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-link:hover { background: var(--primary-dark); }
+    .img-placeholder {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        background: #cbd5e1;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        font-weight: bold;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
 
-        /* --- INDIVIDUAL SLIDE STYLES --- */
+    .img-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-        /* SLIDE 1: Title */
-        .slide--title { text-align: center; align-items: center; }
-        .profile-img-container {
-            width: 180px; height: 180px;
-            border-radius: 50%;
-            border: 4px solid var(--primary);
-            margin: 0 auto 2rem auto;
-            overflow: hidden;
-        }
-        .profile-img-container img { width: 100%; height: 100%; object-fit: cover; }
-        .slide--title h1 { font-size: 3rem; color: var(--primary); line-height: 1.1; margin-bottom: 1rem;}
-        .contact-info { margin-top: 3rem; font-size: 1rem; color: var(--text-light); }
+    .btn-link {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.8rem 2rem;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background 0.3s;
+        border: none;
+        cursor: pointer;
+    }
 
-        /* new divider under role text */
-        .title-divider {
-            width: 120px;
-            height: 2px;
-            background: #d1d5db;
-            margin: 1.5rem auto 0 auto;
-        }
+    .btn-link:hover { background: var(--primary-dark); }
 
-        /* SLIDE 2: Who I Am */
-        .slide--who-i-am { justify-content: flex-start; padding-top: 3rem; }
-        .header-with-logos {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-               margin-top: 1.5rem;   /* NEW: moves "Who I Am" + logos down */
-    margin-bottom: 1rem;  /* closer to bullets */
-            width: 100%;
-        }
-        .logo-container { display: flex; gap: 1.5rem; }
-        .logo-placeholder {
-            width: 130px; height: 130px; background: #e2e8f0;
-            border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; text-align: center; color: var(--text-light); font-weight: 700;
-        }
-        .logo-placeholder img { width: 100%; height: 100%; object-fit: contain;}
+    /* --- INDIVIDUAL SLIDE STYLES --- */
 
-        .bullet-list { list-style: none; }
-        .bullet-list li { font-size: 1.4rem; margin-bottom: 1.5rem; padding-left: 2rem; position: relative; }
-        .bullet-list li::before { content: "•"; color: var(--primary); font-size: 2rem; position: absolute; left: 0; top: -0.3rem; }
+    /* SLIDE 1 to 7: Already good, so no change here */
 
-        /* line under "Who I Am" */
-        .slide--who-i-am h2 {
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
-        }
+    /* SLIDE 8: Key Concepts in Network Dynamics (Unique 2 Column Layout) */
+    .slide--key-concepts .bullet-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two-column layout */
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
 
-        /* SLIDE 3: About ARAS */
-        .slide--aras .grid-2 { align-items: center; }
-        .slide--aras .img-placeholder { height: 450px; }
+    .slide--key-concepts li {
+        font-size: 1.3rem;
+        font-weight: 500;
+        color: var(--secondary);
+        margin-bottom: 1rem;
+    }
 
-        /* line under "About ARAS" */
-        .slide--aras h2 {
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            margin-bottom: 1.5rem;
-        }
+    .slide--key-concepts li::before {
+        content: "•";
+        color: var(--primary);
+        font-size: 2rem;
+        margin-right: 1rem;
+    }
 
-        /* SLIDE 4: ROP Dark Split */
-        .slide--dark-split {
-            background-color: var(--bg-dark);
-            color: var(--white);
-        }
-        .slide--dark-split h2 { color: var(--accent); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 10px;}
-        .slide--dark-split h3 { color: var(--white); margin-bottom: 1.5rem; }
-        .slide--dark-split li { color: #cbd5e1; }
-        .slide--dark-split li::before { color: var(--accent); }
-        .diagnostic-img-frame {
-            border: 3px solid var(--accent);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-            height: 400px;
-        }
+    /* SLIDE 9: Problems We Want to Solve */
+    .slide--problems {
+        background: #e2e8f0;
+        padding: 6rem 4rem;
+    }
 
-        /* SLIDE 5: Hackathon */
-        .hackathon-panels {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-            align-items: stretch;
-        }
-        .panel {
-            flex: 1;
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-        }
-        .panel-header { font-weight: 800; color: var(--primary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;}
-        .panel ul { list-style: none; }
-        .panel li { margin-bottom: 0.8rem; font-size: 1rem; position: relative; padding-left: 1.5rem;}
-        .panel li::before { content: "→"; color: var(--accent); position: absolute; left: 0; }
-        .panel--outcome { background: var(--accent); color: white; }
-        .panel--outcome .panel-header, .panel--outcome li::before { color: white; }
+    .slide--problems h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: var(--primary);
+        text-align: center;
+    }
 
-        /* SLIDE 6: IR Timeline */
-        .timeline-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 4rem;
-            position: relative;
-        }
-        .timeline-container::before {
-            content: ''; position: absolute; top: 30px; left: 50px; right: 50px;
-            height: 4px; background: #e2e8f0; z-index: 0;
-        }
-        .timeline-node {
-            background: white; padding: 2rem; border-radius: 12px;
-            box-shadow: var(--shadow); width: 30%; position: relative; z-index: 1;
-            border-top: 4px solid var(--primary);
-        }
-        .node-icon {
-            width: 60px; height: 60px; background: var(--primary); color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;
-            position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
-        }
-        .timeline-node h4 { text-align: center; margin-top: 1rem; margin-bottom: 1rem;}
-        .timeline-node ul { font-size: 0.95rem; padding-left: 1.2rem; }
+    .slide--problems .bullet-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
 
-        .slide--timeline {
-            background: #0f766e;
-            color: var(--white);
-        }
-        .slide--timeline h2 {
-            color: #e0f2fe;
-        }
-        .slide--timeline p {
-            color: #e0f2fe;
-        }
-        .slide--timeline .timeline-container::before {
-            background: rgba(148, 163, 184, 0.7);
-        }
-        .slide--timeline .timeline-node {
-            background: rgba(15, 23, 42, 0.95);
-            border-top-color: #67e8f9;
-        }
-        .slide--timeline .timeline-node h4 {
-            color: #e0f2fe;
-        }
-        .slide--timeline .timeline-node ul {
-            color: #e5e7eb;
-        }
-        .slide--timeline .node-icon {
-            background: #06b6d4;
-        }
+    .slide--problems .bullet-list li {
+        font-size: 1.3rem;
+        color: var(--secondary);
+        font-weight: 500;
+    }
 
-        /* SLIDE 7: Capstone */
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 3rem;
-            margin-top: 3rem;
-            background: white; padding: 3rem; border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-        .arch-block h3 { color: var(--primary); margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem;}
-        .tech-stack-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-        }
-        .tech-item {
-            background: var(--bg-color); padding: 0.8rem; border-radius: 8px;
-            text-align: center; font-weight: 600; font-size: 0.9rem; color: var(--secondary);
-        }
+    /* SLIDE 10: Best-Response Dynamics */
+    .slide--synchrony {
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        color: white;
+        padding: 6rem 4rem;
+    }
 
-        /* SLIDE 8 & 9 base */
-        .slide--standard-list h2 { font-size: 2.5rem; margin-bottom: 2.5rem; color: var(--primary); }
-        
-        .pyramid-container { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 2rem;}
-        .pyramid-level { width: 80%; padding: 1.2rem; text-align: center; color: white; font-weight: 600; border-radius: 8px; }
-        .lvl-1 { background: #1e3a8a; width: 40%; }
-        .lvl-2 { background: #2563EB; width: 60%; }
-        .lvl-3 { background: #3B82F6; width: 80%; }
-        .lvl-4 { background: #60A5FA; width: 100%; color: var(--secondary);}
+    .slide--synchrony h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
 
-        /* Closing style (used on pages 9 & 10) */
-        .slide--closing {
-            background: #1d283a;
-            color: var(--white);
-        }
-        .slide--closing h1,
-        .slide--closing h2 {
-            color: #e0f2fe;
-        }
-        .slide--closing .contact-info {
-            color: #e5e7eb !important;
-        }
+    .slide--synchrony ul {
+        list-style: none;
+        padding-left: 0;
+    }
 
-        /* --- CONTROLS & PROGRESS --- */
-        .controls-container {
-            position: absolute; bottom: 2rem; right: 3rem;
-            display: flex; align-items: center; gap: 2rem; z-index: 100;
-        }
-        .nav-btn {
-            background: white; border: none; width: 50px; height: 50px; border-radius: 50%;
-            font-size: 1.5rem; color: var(--primary); box-shadow: var(--shadow);
-            cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center;
-        }
-        .nav-btn:hover { background: var(--primary); color: white; transform: scale(1.1); }
-        .slide-counter { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--text-light); }
-        
-        .progress-bar {
-            position: absolute; top: 0; left: 0; height: 6px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            width: 0%; transition: width 0.5s ease-in-out; z-index: 100;
-        }
-        /* --- RESEARCH ANALYSIS STYLES --- */
-.slide--paper-intro { background: #ffffff; }
-.concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-.concept-card { 
-    padding: 1.5rem; border-radius: 12px; border-top: 6px solid var(--primary);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); background: #f8fafc;
-}
+    .slide--synchrony li {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        position: relative;
+    }
 
-.slide--math { background: #0f172a; color: #f1f5f9; }
-.math-box {
-    background: #1e293b; padding: 2rem; border-radius: 15px;
-    border: 1px solid #334155; margin-bottom: 2rem;
-}
-        /* Unique style for Problems We Want to Solve slide */
-.slide--problems {
-    background: #e2e8f0;
-    padding: 6rem 4rem;
-}
+    .slide--synchrony li::before {
+        content: "→";
+        color: var(--accent);
+        position: absolute;
+        left: -2rem;
+        top: 0;
+    }
 
-.slide--problems h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--primary);
-    text-align: center;
-}
+    /* SLIDE 11: Payoff Matrix */
+    .slide--payoff-matrix {
+        background: #1e293b;
+        color: white;
+        padding: 6rem 4rem;
+    }
 
-.slide--problems .bullet-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    text-align: center;
-}
+    .slide--payoff-matrix h2 {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 2rem;
+    }
 
-.slide--problems .bullet-list li {
-    font-size: 1.3rem;
-    color: var(--secondary);
-    font-weight: 500;
-}
-/* Unique style for Best-Response Dynamics slide */
-.slide--synchrony {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: white;
-    padding: 6rem 4rem;
-}
+    .math-box {
+        background: var(--bg-dark);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
 
-.slide--synchrony h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: white;
-}
+    .formula-text {
+        font-family: 'Fira Code', monospace;
+        font-size: 1.6rem;
+        color: #fbbf24;
+        text-align: center;
+        margin: 1rem 0;
+    }
 
-.slide--synchrony ul {
-    list-style: none;
-    padding-left: 0;
-}
+    /* SLIDE 12: Lyapunov Potential Function */
+    .slide--lyapunov {
+        background: #0f172a;
+        color: white;
+        padding: 6rem 4rem;
+    }
 
-.slide--synchrony li {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    position: relative;
-}
+    .slide--lyapunov h2 {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 2rem;
+    }
 
-.slide--synchrony li::before {
-    content: "→";
-    color: var(--accent);
-    position: absolute;
-    left: -2rem;
-    top: 0;
-}
-/* Unique style for Payoff Matrix and Threshold Equation slide */
-.slide--payoff-matrix {
-    background: #1e293b;
-    color: white;
-    padding: 6rem 4rem;
-}
+    .math-box {
+        background: #1e293b;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
 
-.slide--payoff-matrix h2 {
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 2rem;
-}
+    .formula-text {
+        font-family: 'Fira Code', monospace;
+        color: #fbbf24;
+        font-size: 1.6rem;
+        text-align: center;
+        margin: 1rem 0;
+    }
 
-.math-box {
-    background: var(--bg-dark);
-    padding: 2rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-}
+    /* SLIDE 13: Threshold Transformation */
+    .slide--threshold-transformation {
+        background: #3b82f6;
+        color: white;
+        padding: 6rem 4rem;
+    }
 
-.formula-text {
-    font-family: 'Fira Code', monospace;
-    font-size: 1.6rem;
-    color: #fbbf24;
-    text-align: center;
-    margin: 1rem 0;
-}
-/* Unique style for Lyapunov Potential Function slide */
-.slide--lyapunov {
-    background: #0f172a;
-    color: white;
-    padding: 6rem 4rem;
-}
+    .slide--threshold-transformation h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1.5rem;
+    }
 
-.slide--lyapunov h2 {
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 2rem;
-}
+    .slide--threshold-transformation ul {
+        list-style: none;
+        padding-left: 0;
+        font-size: 1.3rem;
+    }
 
-.math-box {
-    background: #1e293b;
-    padding: 2rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-}
+    .slide--threshold-transformation li {
+        margin-bottom: 1.5rem;
+        position: relative;
+        font-weight: 500;
+    }
 
-.formula-text {
-    font-family: 'Fira Code', monospace;
-    color: #fbbf24;
-    font-size: 1.6rem;
-    text-align: center;
-    margin: 1rem 0;
-}
-/* Unique style for Threshold Transformation slide */
-.slide--threshold-transformation {
-    background: #3b82f6;
-    color: white;
-    padding: 6rem 4rem;
-}
+    .slide--threshold-transformation li::before {
+        content: "→";
+        color: var(--accent);
+        position: absolute;
+        left: -2rem;
+        top: 0;
+    }
 
-.slide--threshold-transformation h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 1.5rem;
-}
+    .math-box {
+        background: var(--bg-dark);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-top: 2rem;
+    }
 
-.slide--threshold-transformation ul {
-    list-style: none;
-    padding-left: 0;
-    font-size: 1.3rem;
-}
+    .formula-text {
+        font-family: 'Fira Code', monospace;
+        font-size: 1.6rem;
+        color: #fbbf24;
+        text-align: center;
+        margin: 1rem 0;
+    }
 
-.slide--threshold-transformation li {
-    margin-bottom: 1.5rem;
-    position: relative;
-    font-weight: 500;
-}
+    /* SLIDE 14: Total Switches & Reaching Equilibrium */
+    .slide--convergence {
+        background: #1e293b;
+        color: white;
+        padding: 6rem 4rem;
+    }
 
-.slide--threshold-transformation li::before {
-    content: "→";
-    color: var(--accent);
-    position: absolute;
-    left: -2rem;
-    top: 0;
-}
+    .slide--convergence h2 {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 2rem;
+    }
 
-.math-box {
-    background: var(--bg-dark);
-    padding: 2rem;
-    border-radius: 12px;
-    margin-top: 2rem;
-}
+    .timeline-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
 
-.formula-text {
-    font-family: 'Fira Code', monospace;
-    font-size: 1.6rem;
-    color: #fbbf24;
-    text-align: center;
-    margin: 1rem 0;
-}
-/* Unique style for Total Switches & Reaching Equilibrium slide */
-.slide--convergence {
-    background: #1e293b;
-    color: white;
-    padding: 6rem 4rem;
-}
+    .timeline-node {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        width: 45%;
+        color: var(--text-main);
+    }
 
-.slide--convergence h2 {
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 2rem;
-}
+    .timeline-node h4 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+    }
 
-.timeline-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-}
+    .timeline-node ul {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
 
-.timeline-node {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    width: 45%;
-    color: var(--text-main);
-}
+    .timeline-node .node-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
 
-.timeline-node h4 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-
-.timeline-node ul {
-    font-size: 1.2rem;
-    margin-top: 1rem;
-}
-
-.timeline-node .node-icon {
-    width: 60px;
-    height: 60px;
-    background: var(--primary);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.formula-text { 
-    font-family: 'Fira Code', monospace; color: #fbbf24; 
-    font-size: 1.6rem; text-align: center; margin: 1rem 0;
-}
-
-.proof-tag {
-    display: inline-block; background: var(--primary); color: white;
-    padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;
-    margin-bottom: 10px; text-transform: uppercase;
-}
-        /* RESPONSIVE TWEAKS */
-        @media (max-width: 1024px) {
-            .slide { padding: 3rem; }
-            .header-with-logos, .grid-2, .hackathon-panels, .timeline-container, .architecture-grid { flex-direction: column; grid-template-columns: 1fr; gap: 2rem; }
-            .timeline-container::before { display: none; }
-            .timeline-node, .panel { width: 100%; }
-            .logo-container { margin-top: 1rem; }
-            .img-placeholder { min-height: 250px; height: auto;}
-        }
-    </style>
 </head>
 <body>
 
